@@ -25,7 +25,15 @@ function Reservation() {
                             <option value="3">Three</option>
                         </select>
                     </div>
-                    <button type="submit" className="btn btn-primary">Patvirtinti</button>
+                    <div className="mb-3">
+                        <label className="form-label">Pasirinkite datą</label>
+                        <input type="date" className="form-control" required />
+                    </div>
+                    <div className="mb-3">
+                        <label className="form-label">Pasirinkite laiką</label>
+                        <input type="time" className="form-control" required />
+                    </div>
+                    <button type="submit" className="btn btn-primary mt-4">Patvirtinti</button>
                 </form>
             </div>
         </div>
