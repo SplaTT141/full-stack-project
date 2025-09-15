@@ -4,7 +4,7 @@ import image2 from "../assets/image2.png";
 function AboutUS() {
     return (
         <div className="container">
-            <div className="row">
+            <div className="row py-5">
                 <div className="col-md-6 col-m-3">
                     <div className="row">
                         <div className="col-md-9 mb-3">
