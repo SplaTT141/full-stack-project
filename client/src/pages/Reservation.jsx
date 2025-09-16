@@ -5,16 +5,16 @@ export function Reservation() {
             <div className="bd-example m-0 border-0">
                 <form>
                     <div className="mb-3">
-                        <label htmlFor="exampleInputPassword1" className="form-label">Vardas</label>
-                        <input type="text" className="form-control" required />
+                        <label htmlFor="name" className="form-label">Vardas</label>
+                        <input type="text" id="name" className="form-control" required />
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="exampleInputPassword1" className="form-label">Pavardė</label>
-                        <input type="text" className="form-control" required />
+                        <label htmlFor="second_name" className="form-label">Pavardė</label>
+                        <input type="text" className="form-control" id="second_name" required />
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="exampleInputPassword1" className="form-label">El. paštas</label>
-                        <input type="email" className="form-control" required />
+                        <label htmlFor="email" className="form-label">El. paštas</label>
+                        <input type="email" id="email" className="form-control" required />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="exampleSelect" className="form-label">Pasirinkite paslaugą</label>
