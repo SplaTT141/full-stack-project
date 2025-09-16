@@ -7,6 +7,8 @@ import {NotFound} from "./pages/NotFound";
 import {Header} from "./components/Header";
 import {Footer} from "./components/Footer";
 import { AdminClientReservation } from "./pages/AdminClientReservations";
+import { Login } from "./pages/Login";
+import { Register } from "./pages/Register";
 
 function App() {
 
@@ -18,6 +20,8 @@ function App() {
         <Route path="/about" element={<AboutUs />}/>
         <Route path="/services" element={<Services />}/>
         <Route path="/reservation" element={<Reservation />}/>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="/adminclientreservation" element={<AdminClientReservation />}/>
         <Route path="*" element={<NotFound />}/>
       </Routes>
