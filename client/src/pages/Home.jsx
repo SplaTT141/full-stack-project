@@ -1,7 +1,7 @@
 import barbershop from "../assets/barbershop.png";
 import {Link} from "react-router-dom";
 
-function Home() {
+export function Home() {
     return (
         <div className="container col-xxl-8 px-4 py-5">
             <div className="row flex-lg-row-reverse align-items-center g-5 py-5">
@@ -21,5 +21,3 @@ function Home() {
         </div>
     )
 }
-
-export default Home;

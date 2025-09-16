@@ -1,9 +1,9 @@
-function Services() {
+export function Services() {
     return (
     <div className="container">
-        <div class="bd-example-snippet bd-code-snippet py-5">
-            <div class="bd-example m-0 border-0">
-                <table class="table table-striped table-hover">
+        <div className="bd-example-snippet bd-code-snippet py-5">
+            <div className="bd-example m-0 border-0">
+                <table className="table table-striped table-hover">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
@@ -80,5 +80,3 @@ function Services() {
     </div>
     )
 }
-
-export default Services;

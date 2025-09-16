@@ -1,24 +1,24 @@
-function Reservation() {
+export function Reservation() {
     return (
     <div className="container py-5">
         <div className="bd-example-snippet bd-code-snippet">
             <div className="bd-example m-0 border-0">
                 <form>
                     <div className="mb-3">
-                        <label for="exampleInputPassword1" className="form-label">Vardas</label>
-                        <input type="text" className="form-control" id="exampleInputPassword1" required />
+                        <label htmlFor="exampleInputPassword1" className="form-label">Vardas</label>
+                        <input type="text" className="form-control" required />
                     </div>
                     <div className="mb-3">
-                        <label for="exampleInputPassword1" className="form-label">Pavardė</label>
-                        <input type="text" className="form-control" id="exampleInputPassword1" required />
+                        <label htmlFor="exampleInputPassword1" className="form-label">Pavardė</label>
+                        <input type="text" className="form-control" required />
                     </div>
                     <div className="mb-3">
-                        <label for="exampleInputPassword1" className="form-label">El. paštas</label>
-                        <input type="email" className="form-control" id="exampleInputPassword1" required />
+                        <label htmlFor="exampleInputPassword1" className="form-label">El. paštas</label>
+                        <input type="email" className="form-control" required />
                     </div>
                     <div className="mb-3">
-                        <label for="exampleSelect" className="form-label">Pasirinkite paslaugą</label>
-                        <select className="form-select" id="exampleSelect" required>
+                        <label htmlFor="exampleSelect" className="form-label">Pasirinkite paslaugą</label>
+                        <select className="form-select" required>
                             <option value="">Paslaugos...</option>
                             <option value="1">One</option>
                             <option value="2">Two</option>
@@ -40,5 +40,3 @@ function Reservation() {
     </div>
     )
 }
-
-export default Reservation;
