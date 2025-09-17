@@ -4,23 +4,31 @@ import { useNavigate } from 'react-router-dom';
 
 export function Register() {
 
-    const [userData, setUserData] = useState({
-        username: '',
-        email: '',
-        password: '',
-    });
+    const [username, setUsername] = useState('');
+    // const [usernameError, setUsernameError] = useState('');
+    
+    const [email, setEmail] = useState('');
+    // const [emailError, setEmailError] = useState('');
+    
+    const [password, setPassword] = useState('');
+    // const [passwordError, setPasswordError] = useState('');
 
     const navigate = useNavigate();
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
 
-        axios.post('http://localhost:5000/user_register', userData)
-        .then((res) => {
+        try {
+            const res = await axios.post('http://localhost:5000/user_register', {
+                username,
+                email,
+                password,
+            });
             navigate('/')
-            console.log(res.data);
-        })
-        .catch((err) => {console.log(err)})
+            console.log(res);
+        } catch (err) {
+            console.log(err);
+        }
     };
 
     return (
@@ -31,26 +39,45 @@ export function Register() {
                 <form onSubmit={handleSubmit}>
                     <div className="d-flex flex-row align-items-center mb-4">
                         <div className="form-outline flex-fill">
-                            <input onChange={e => setUserData({...userData, username: e.target.value})} type="text" id="username" className="form-control" />
+                            <input
+                                onChange={e => setUsername(e.target.value)}
+                                type="text"
+                                id="username"
+                                className="form-control"
+                            />
                             <label className="form-label" htmlFor="username">Vartotojo vardas</label>
                         </div>
                     </div>
                     <div className="d-flex flex-row align-items-center mb-4">
                         <div className="form-outline flex-fill">
-                            <input onChange={e => setUserData({...userData, email: e.target.value})} type="email" id="email" className="form-control" />
+                            <input
+                                onChange={e => setEmail(e.target.value)}
+                                type="email"
+                                id="email"
+                                className="form-control" 
+                            />
                             <label className="form-label" htmlFor="email">El. paštas</label>
                         </div>
                     </div>
                     <div className="d-flex flex-row align-items-center mb-4">
                         <div className="form-outline flex-fill">
-                            <input onChange={e => setUserData({...userData, password: e.target.value})} type="password" id="password" className="form-control" />
+                            <input
+                                onChange={e => setPassword(e.target.value)}
+                                type="password"
+                                id="password"
+                                className="form-control"
+                            />
                             <label className="form-label" htmlFor="password">Slaptažodis</label>
                         </div>
                     </div>
                     <div className="d-flex flex-row align-items-center mb-4">
                         <div className="form-outline flex-fill">
-                            <input type="password" id="password_repeat" className="form-control" />
-                            <label className="form-label" htmlFor="password_repeat">Pakartokite slaptažodį</label>
+                            <input  
+                                type="password"
+                                id="password_confirm"
+                                className="form-control"
+                            />
+                            <label className="form-label" htmlFor="password_confirm">Pakartokite slaptažodį</label>
                         </div>
                     </div>
                     <div className="form-check text-body d-flex justify-content-start mb-5">

@@ -1,22 +1,23 @@
 import express from 'express';
 import mysql from 'mysql';
 import cors from 'cors';
+import dotenv from 'dotenv';
 
 
 const app = express();
-const port = 5000;
 
 app.use(express.json());
 app.use(cors({
     origin: "http://localhost:5173",
 }));
 
+dotenv.config({ path: './.env' });
 
 const db = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "",
-    database: "kirpykla",
+    host: process.env.DATABASE_HOST,
+    user: process.env.DATABASE_USER,
+    password: process.env.DATABASE_PASSWORD,
+    database: process.env.DATABASE,
 });
 
 db.connect((error) => {
@@ -48,6 +49,6 @@ app.get('/', (req, res) => {
     res.send("It's alive!");
 });
 
-app.listen(port, () => {
-    console.log(`Server is running on: http://localhost:${port}`);
+app.listen(process.env.PORT, () => {
+    console.log(`Server is running`);
 });
