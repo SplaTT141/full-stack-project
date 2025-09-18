@@ -29,7 +29,7 @@ db.connect((error) => {
     }
 });
 
-app.post('/user_register', (req, res) => {
+app.post('/register', (req, res) => {
     const sql = "INSERT INTO users (`username`, `email`, `password`) VALUES (?, ?, ?) ";
     const userData = [
         req.body.username,
