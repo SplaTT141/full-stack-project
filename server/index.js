@@ -2,7 +2,9 @@ import express from 'express';
 import mysql from 'mysql';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import { registerValidation } from './lib/validation.js';
 
+dotenv.config({ path: './.env' });
 
 const app = express();
 
@@ -11,7 +13,6 @@ app.use(cors({
     origin: "http://localhost:5173",
 }));
 
-dotenv.config({ path: './.env' });
 
 const db = mysql.createConnection({
     host: process.env.DATABASE_HOST,
@@ -30,15 +31,22 @@ db.connect((error) => {
 });
 
 app.post('/register', (req, res) => {
-    const sql = "INSERT INTO users (`username`, `email`, `password`) VALUES (?, ?, ?) ";
-    const userData = [
-        req.body.username,
-        req.body.email,
-        req.body.password,
-    ]
+    const sql = "INSERT INTO users SET ?";
+    const userData = {
+        username: req.body.username,
+        email: req.body.email,
+        password: req.body.password,
+    };
+
+    const { error } = registerValidation(userData);
+
+    if (error) {
+        return res.status(400).send(error.details[0].message);
+    }
+
     db.query(sql, userData, (error, result) => {
         if (error) {
-            return res.json({ message: 'Something went wrong' + error })
+            return res.status(500).json({ message: 'Server error' })
         } else {
             return res.json({ success: 'User added successfully' })
         }
