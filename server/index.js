@@ -3,6 +3,8 @@ import mysql from 'mysql';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { registerValidation } from './lib/validation.js';
+import { randomString } from './lib/randomString.js';
+import { hash } from './lib/hash.js';
 
 dotenv.config({ path: './.env' });
 
@@ -32,11 +34,16 @@ db.connect((error) => {
 
 app.post('/register', (req, res) => {
     const sql = "INSERT INTO users SET ?";
+
+    const salt = randomString(10);
+    const passwordHash = hash(req.body.password + salt);
+
     const userData = {
         username: req.body.username,
         email: req.body.email,
-        password: req.body.password,
+        password: passwordHash,
     };
+
 
     const { error } = registerValidation(userData);
 
