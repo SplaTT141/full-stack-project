@@ -32,29 +32,18 @@ db.connect((error) => {
 
 app.post('/register', async (req, res) => {
     try {
-        const sql = "INSERT INTO users SET ?";
+        const { username, email, password } = req.body;
+        const sql = "INSERT INTO users (username, email, password) VALUES (?, ?, ?);";
 
-        const username = req.body.username;
-        const email = req.body.email;
-        const password = req.body.password;
-
-        // const passwordHash = await bcrypt.hash(password, 12);
-
-        const userData = {
-            username,
-            email,
-            password,
-        };
-
-        const { error } = registerValidation(userData);
+        const { error } = registerValidation({ username, email, password });
 
         if (error) {
             return res.status(400).send(error.details[0].message);
         }
 
-        db.query(sql, userData, (error, result) => {
+        db.query(sql, [username, email, password], (error, result) => {
             if (error) {
-                return res.status(500).json({ message: 'Server error' });
+                return res.status(500).json({ message: 'Server error ' + error });
             } else {
                 return res.json({ success: 'User added successfully' });
             }
