@@ -33,15 +33,16 @@ db.connect((error) => {
 app.post('/register', async (req, res) => {
     try {
         const { username, email, password } = req.body;
-        const sql = "INSERT INTO users (username, email, password) VALUES (?, ?, ?);";
+        const passwordHash = await bcrypt.hash(password, 12);
+        const sql = "INSERT INTO users (username, email, passwordHash) VALUES (?, ?, ?);";
 
-        const { error } = registerValidation({ username, email, password });
+        const { error } = registerValidation({ username, email, passwordHash });
 
         if (error) {
             return res.status(400).send(error.details[0].message);
         }
 
-        db.query(sql, [username, email, password], (error, result) => {
+        db.query(sql, [username, email, passwordHash], (error, result) => {
             if (error) {
                 return res.status(500).json({ message: 'Server error ' + error });
             } else {
