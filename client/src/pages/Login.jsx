@@ -1,10 +1,14 @@
 import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { passwordIsInvalid, usernameOrEmailIsInvalid } from "../lib/validation";
 
 export function Login() {
     const [usernameOrEmail, setUsernameOrEmail] = useState('');
+    const [usernameOrEmailError, setUsernameOrEmailError] = useState('');
+
     const [password, setPassword] = useState('');
+    const [passwordError, setPasswordError] = useState('');
 
     const [error, setError] = useState('');
 
@@ -12,6 +16,23 @@ export function Login() {
 
     async function handleSubmit(e) {
         e.preventDefault();
+
+        setUsernameOrEmailError('');
+        setPasswordError('');
+
+        let hasError = false;
+
+        if (usernameOrEmailIsInvalid(usernameOrEmail)) {
+            setUsernameOrEmailError(usernameOrEmailIsInvalid(usernameOrEmail));
+            hasError = true;
+        }
+
+        if (passwordIsInvalid(password)) {
+            setPasswordError(passwordIsInvalid(password));
+            hasError = true;
+        }
+
+        if (hasError) return;
 
         try {
             const res = await axios.post('http://localhost:5000/login', {
@@ -40,14 +61,16 @@ export function Login() {
                     <div className="mb-3 fw-bold" style={{color: 'red'}}>{error}</div>
                     <div className="d-flex flex-row align-items-center mb-4">
                         <div className="form-outline flex-fill">
-                            <input onChange={e => setUsernameOrEmail(e.target.value)} type="text" id="username_or_email" className="form-control" />
+                            <input onChange={e => setUsernameOrEmail(e.target.value)} type="text" id="username_or_email" className={"form-control" + (usernameOrEmailError ? ' is-invalid' : '')} />
                             <label className="form-label" htmlFor="username_or_email">Vartotojo vardas arba el. paštas</label>
+                            <div style={{color: 'red'}}>{usernameOrEmailError}</div>
                         </div>
                     </div>
                     <div className="d-flex flex-row align-items-center mb-4">
                         <div className="form-outline flex-fill">
-                            <input onChange={e => setPassword(e.target.value)} type="password" id="password" className="form-control" />
+                            <input onChange={e => setPassword(e.target.value)} type="password" id="password" className={"form-control" + (passwordError ? ' is-invalid' : '')} />
                             <label className="form-label" htmlFor="password">Slaptažodis</label>
+                            <div style={{color: 'red'}}>{passwordError}</div>
                         </div>
                     </div>
                     <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">

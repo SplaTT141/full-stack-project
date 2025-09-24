@@ -87,3 +87,21 @@ export function passwordRepeatIsInvalid(passwordRepeat, password) {
 
     return '';
 }
+
+export function usernameOrEmailIsInvalid(usernameOrEmail) {
+    if (!usernameOrEmail) {
+        return `Vartotojo vardas arba el. paštas yra privalomas`
+    }
+
+    if (typeof usernameOrEmail !== 'string') {
+        return `Vartotojo vardas arba el. paštas turi būti tekstas`;
+    }
+
+    if (usernameOrEmail.length < 6) {
+        return `Vartotojo vardą arba el. paštą turi sudaryti bent 6 simboliai`;
+    }
+
+    if (usernameOrEmail.length > 50) {
+        return `Vartotojo vardą arba el. paštą turi sudaryti ne daugiau 50 simbolių`;
+    }
+}
