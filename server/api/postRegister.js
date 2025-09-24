@@ -11,14 +11,18 @@ export async function postRegister(req, res) {
     }
 
     try {
-        const sql = `SELECT * FROM users WHERE username = ? OR email = ?;`;
+        const sql = `SELECT username, email FROM users WHERE username = ? OR email = ?;`;
         const [response] = await db.execute(sql, [username, email]);
 
-        if (response.length > 0) {
-            return res.status(400).json({ status: 'error', message: 'Toks vartotojas jau yra užregistruotas' });
+        if (response > 0) {
+            if (response[0].username === username) {
+                return res.status(400).json({ status: 'error', message: 'Toks vatotojo vardas jau yra užregistruotas' });
+            }
+            if (response[0].email === email) {
+                return res.status(400).json({ status: 'error', message: 'Toks el. paštas jau yra užregistruotas' });
+            }
         }
     } catch (error) {
-        console.log(error);
         return res.status(500).json({ status: 'error', message: 'Server error' });
     }
 
