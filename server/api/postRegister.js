@@ -7,7 +7,19 @@ export async function postRegister(req, res) {
 
     const { error } = registerValidation({ username, email, password });
     if (error) {
-        return res.status(400).send(error.details[0].message);
+        return res.status(400).json({ status: 'error', message: error.details[0].message });
+    }
+
+    try {
+        const sql = `SELECT * FROM users WHERE username = ? OR email = ?;`;
+        const [response] = await db.execute(sql, [username, email]);
+
+        if (response.length > 0) {
+            return res.status(400).json({ status: 'error', message: 'Toks vartotojas jau yra užregistruotas' });
+        }
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ status: 'error', message: 'Server error' });
     }
 
     try {
@@ -20,9 +32,18 @@ export async function postRegister(req, res) {
             return res.status(500).json({ status: 'error', message: 'Server error' });
         }
 
-        return res.status(201).json({ status: 'Success', message: 'User added successfully' });
+        return res.status(201).json({ status: 'success', message: 'User added successfully' });
     } catch (error) {
-        console.log(error);
+        if (error.code === 'ER_DUP_ENTRY') {
+            if (error.sqlMessage.includes('username')) {
+                return res.status(400).json({ status: 'error', message: 'Username already exists' });
+            }
+            if (error.sqlMessage.includes('email')) {
+                return res.status(400).json({ status: 'error', message: 'Email already exists' });
+            }
+            return res.status(400).json({ status: 'error', message: 'Duplicate entry' });
+        }
+
         return res.status(500).json({ status: 'error', message: 'Server error' });
     }
 }
