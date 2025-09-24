@@ -14,16 +14,16 @@ export async function postRegister(req, res) {
         const sql = `SELECT username, email FROM users WHERE username = ? OR email = ?;`;
         const [response] = await db.execute(sql, [username, email]);
 
-        if (response > 0) {
+        if (response.length > 0) {
             if (response[0].username === username) {
-                return res.status(400).json({ status: 'error', message: 'Toks vatotojo vardas jau yra užregistruotas' });
+                return res.status(400).json({ status: 'error', message: 'Toks vartotojo vardas jau yra užregistruotas' });
             }
             if (response[0].email === email) {
                 return res.status(400).json({ status: 'error', message: 'Toks el. paštas jau yra užregistruotas' });
             }
         }
     } catch (error) {
-        return res.status(500).json({ status: 'error', message: 'Server error' });
+        return res.status(500).json({ status: 'error', message: 'Serverio klaida' });
     }
 
     try {
@@ -33,21 +33,21 @@ export async function postRegister(req, res) {
         const [response] = await db.execute(sql, [username, email, passwordHash]);
 
         if (response.affectedRows !== 1) {
-            return res.status(500).json({ status: 'error', message: 'Server error' });
+            return res.status(500).json({ status: 'error', message: 'Serverio klaida' });
         }
 
         return res.status(201).json({ status: 'success', message: 'User added successfully' });
     } catch (error) {
         if (error.code === 'ER_DUP_ENTRY') {
             if (error.sqlMessage.includes('username')) {
-                return res.status(400).json({ status: 'error', message: 'Username already exists' });
+                return res.status(400).json({ status: 'error', message: 'Toks vartotojo vardas jau yra užregistruotas' });
             }
             if (error.sqlMessage.includes('email')) {
-                return res.status(400).json({ status: 'error', message: 'Email already exists' });
+                return res.status(400).json({ status: 'error', message: 'Toks el. paštas jau yra užregistruotas' });
             }
-            return res.status(400).json({ status: 'error', message: 'Duplicate entry' });
+            return res.status(400).json({ status: 'error', message: 'Dubliuotas įrašas' });
         }
 
-        return res.status(500).json({ status: 'error', message: 'Server error' });
+        return res.status(500).json({ status: 'error', message: 'Serverio klaida' });
     }
 }

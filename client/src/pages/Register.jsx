@@ -20,6 +20,8 @@ export function Register() {
     const [tos, setTos] = useState(false);
     const [tosError, setTosError] = useState('');
 
+    const [error, setError] = useState('');
+
     const navigate = useNavigate();
 
     async function handleSubmit(e) {
@@ -29,6 +31,7 @@ export function Register() {
         setEmailError('');
         setPasswordError('');
         setPasswordRepeatError('');
+        setTosError('');
 
         let hasError = false;
 
@@ -65,10 +68,16 @@ export function Register() {
                 email,
                 password,
             });
+            console.log(res.data);
             navigate('/login');
-            console.log(res);
         } catch (err) {
             console.log(err);
+
+            if (err.response && err.response.data.status === 'error') {
+                setError(err.response.data.message);
+            } else {
+                setError("Serverio klaida");
+            }
         }
     };
 
@@ -78,6 +87,7 @@ export function Register() {
             <div className="d-flex justify-content-center flex-column col-6 col-xl-4 order-2 order-lg-1">
                 <p className="text-center text-body h1 fw-bold mb-5 mt-4">Registracija</p>
                 <form onSubmit={handleSubmit}>
+                    <div className="alert alert-danger mb-3 fw-bold" style={{color: 'red'}}>{error}</div>
                     <div className="d-flex flex-row align-items-center mb-4">
                         <div className="form-outline flex-fill">
                             <input
@@ -136,7 +146,7 @@ export function Register() {
                         />
                         <label className="form-check-label" htmlFor="checkbox">Sutinku su vartotojo sąlygomis</label>
                     </div>
-                    <div className="mb-5" style={{color: 'red'}}>{tosError}</div>
+                    <div className="mb-3" style={{color: 'red'}}>{tosError}</div>
                     <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                         <button type="submit" className="btn btn-primary btn-lg">Registruotis</button>
                     </div>
