@@ -87,7 +87,7 @@ export function Register() {
             <div className="d-flex justify-content-center flex-column col-6 col-xl-4 order-2 order-lg-1">
                 <p className="text-center text-body h1 fw-bold mb-5 mt-4">Registracija</p>
                 <form onSubmit={handleSubmit}>
-                    <div className="alert alert-danger mb-3 fw-bold" style={{color: 'red'}}>{error}</div>
+                    <div className="mb-3 fw-bold" style={{color: 'red'}}>{error}</div>
                     <div className="d-flex flex-row align-items-center mb-4">
                         <div className="form-outline flex-fill">
                             <input
