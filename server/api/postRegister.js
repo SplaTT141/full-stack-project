@@ -3,27 +3,26 @@ import bcrypt from 'bcrypt';
 import { db } from '../db.js';
 
 export async function postRegister(req, res) {
+    const { username, email, password } = req.body;
+
+    const { error } = registerValidation({ username, email, password });
+    if (error) {
+        return res.status(400).send(error.details[0].message);
+    }
+
     try {
-        const { username, email, password } = req.body;
+        const passwordHash = await bcrypt.hash(password, 12);
 
-        const { error } = registerValidation({ username, email, password });
+        const sql = "INSERT INTO users (username, email, passwordHash) VALUES (?, ?, ?);";
+        const [response] = await db.execute(sql, [username, email, passwordHash]);
 
-        if (error) {
-            return res.status(400).send(error.details[0].message);
+        if (response.affectedRows !== 1) {
+            return res.status(500).json({ status: 'error', message: 'Server error' });
         }
 
-        const passwordHash = await bcrypt.hash(password, 12);
-        const sql = "INSERT INTO users (username, email, passwordHash) VALUES (?, ?, ?);";
-
-
-        db.query(sql, [username, email, passwordHash], (error, result) => {
-            if (error) {
-                return res.status(500).json({ message: 'Server error' });
-            } else {
-                return res.json({ success: 'User added successfully' });
-            }
-        });
-    } catch (err) {
-        return res.status(500).json({ message: 'Server error', error: err.message });
+        return res.status(201).json({ status: 'Success', message: 'User added successfully' });
+    } catch (error) {
+        console.log(error);
+        return res.status(500).json({ status: 'error', message: 'Server error' });
     }
 }

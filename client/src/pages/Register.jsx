@@ -65,7 +65,7 @@ export function Register() {
                 email,
                 password,
             });
-            navigate('/');
+            navigate('/login');
             console.log(res);
         } catch (err) {
             console.log(err);

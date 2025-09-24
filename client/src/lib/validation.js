@@ -37,7 +37,7 @@ export function usernameIsInvalid(username) {
 
 export function emailIsInvalid(email) {
     if (!email) {
-        return `El. paštas yra privalomas`
+        return `El. paštas yra privalomas`;
     }
 
     if (typeof email !== 'string') {
@@ -52,8 +52,9 @@ export function emailIsInvalid(email) {
         return `El. paštą turi sudaryti ne daugiau 50 simbolių`;
     }
 
-    if (!email.includes('@')) {
-        return `El. paštas privalo turėti "@" simbolį`;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        return `Netinkamas el. pašto formatas`;
     }
 
     return '';
