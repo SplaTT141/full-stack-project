@@ -76,7 +76,7 @@ export function Register() {
             if (err.response && err.response.data.status === 'error') {
                 setError(err.response.data.message);
             } else {
-                setError("Serverio klaida");
+                setError("Serverio klaida, pabandykite veliau");
             }
         }
     };
