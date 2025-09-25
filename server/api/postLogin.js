@@ -4,6 +4,11 @@ import { loginValidation } from "../lib/validation.js";
 export async function postLogin(req, res) {
     const { usernameOrEmail, password } = req.body;
 
+    const { error } = loginValidation({ usernameOrEmail, password });
+    if (error) {
+        return res.status(400).json({ status: 'error', message: error.details[0].message });
+    }
+
     try {
         const sql = 'SELECT * FROM users WHERE username = ? OR email = ?;';
         const [response] = await db.execute(sql, [usernameOrEmail, usernameOrEmail]);

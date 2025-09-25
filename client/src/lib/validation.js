@@ -44,8 +44,8 @@ export function emailIsInvalid(email) {
         return `El. paštas turi būti tekstas`;
     }
 
-    if (email.length < 6) {
-        return `El. paštą turi sudaryti bent 6 simboliai`;
+    if (email.length < 5) {
+        return `El. paštą turi sudaryti bent 5 simboliai`;
     }
 
     if (email.length > 50) {
@@ -81,6 +81,10 @@ export function passwordIsInvalid(password) {
 }
 
 export function passwordRepeatIsInvalid(passwordRepeat, password) {
+    if (!passwordRepeat) {
+        return 'Pakartokite slaptažodį'
+    }
+
     if (passwordRepeat !== password) {
         return 'Slaptažodžiai yra nevienodi'
     }
@@ -97,11 +101,13 @@ export function usernameOrEmailIsInvalid(usernameOrEmail) {
         return `Vartotojo vardas arba el. paštas turi būti tekstas`;
     }
 
-    if (usernameOrEmail.length < 6) {
-        return `Vartotojo vardą arba el. paštą turi sudaryti bent 6 simboliai`;
+    if (usernameOrEmail.length < 5) {
+        return `Vartotojo vardą arba el. paštą turi sudaryti bent 5 simboliai`;
     }
 
     if (usernameOrEmail.length > 50) {
         return `Vartotojo vardą arba el. paštą turi sudaryti ne daugiau 50 simbolių`;
     }
+
+    return '';
 }
