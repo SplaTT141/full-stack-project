@@ -101,8 +101,8 @@ export function usernameOrEmailIsInvalid(usernameOrEmail) {
         return `Vartotojo vardas arba el. paštas turi būti tekstas`;
     }
 
-    if (usernameOrEmail.length < 5) {
-        return `Vartotojo vardą arba el. paštą turi sudaryti bent 5 simboliai`;
+    if (usernameOrEmail.length < 3) {
+        return `Vartotojo vardą arba el. paštą turi sudaryti bent 3 simboliai`;
     }
 
     if (usernameOrEmail.length > 50) {
