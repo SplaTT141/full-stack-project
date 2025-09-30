@@ -38,18 +38,23 @@ export async function postLogin(req, res) {
             const randomLoginToken = randomString(32);
             const loginToken = hash(randomLoginToken);
 
-            try {
-                const sql = `INSERT INTO login_tokens (user_id, token) VALUES (?, ?);`;
-                const [response] = await db.execute(sql, [userData.id, loginToken]);
+            const sql = `INSERT INTO login_tokens (user_id, token) VALUES (?, ?);`;
+            const [response] = await db.execute(sql, [userData.id, loginToken]);
 
-                if (response.affectedRows !== 1) {
-                    return res.status(500).json({ status: 'error', message: 'Serverio klaida' });
-                }
-
-                return res.status(200).json({ status: 'success', message: 'Prisijungta sėkmingai' });
-            } catch (error) {
+            if (response.affectedRows !== 1) {
                 return res.status(500).json({ status: 'error', message: 'Serverio klaida' });
             }
+
+            res.cookie('loginToken', loginToken, {
+                httpOnly: true,
+                sameSite: 'Lax',
+                maxAge: 1000 * 60 * 60,
+                secure: false,
+                domain: 'localhost',
+                path: '/',
+            })
+
+            return res.status(200).json({ status: 'success', message: 'Prisijungta sėkmingai' });
         } else {
             return res.status(400).json({ status: 'error', message: 'Neteisingi prisijungimo duomenys' });
         }
