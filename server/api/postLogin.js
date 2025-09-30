@@ -50,7 +50,6 @@ export async function postLogin(req, res) {
                 sameSite: 'Lax',
                 maxAge: 1000 * 60 * 60,
                 secure: false,
-                domain: 'localhost',
                 path: '/',
             })
 

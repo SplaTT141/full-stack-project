@@ -36,10 +36,15 @@ export function Login() {
         if (hasError) return;
 
         try {
-            const res = await axios.post('http://localhost:5000/login', {
+            const res = await axios.post('http://localhost:5000/login',
+            {
                 usernameOrEmail,
                 password,
-            });
+            },
+            {
+                withCredentials: true
+            }
+        );
             console.log(res);
             navigate('/');
         } catch (error) {
