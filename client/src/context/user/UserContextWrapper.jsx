@@ -1,6 +1,5 @@
 // import { useEffect, useState } from "react"
 // import { initialUserContext } from "./initialUserContext"
-// import axios from "axios";
 
 // export function UserContextWrapper() {
 //     const [isLoggedIn, setIsLoggedIn] = useState(initialUserContext.isLoggedIn);
