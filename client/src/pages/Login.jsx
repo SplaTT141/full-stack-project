@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { passwordIsInvalid, usernameOrEmailIsInvalid } from "../lib/validation";
@@ -14,7 +13,7 @@ export function Login() {
 
     const navigate = useNavigate();
 
-    async function handleSubmit(e) {
+    function handleSubmit(e) {
         e.preventDefault();
 
         setUsernameOrEmailError('');
@@ -35,27 +34,26 @@ export function Login() {
 
         if (hasError) return;
 
-        try {
-            const res = await axios.post('http://localhost:5000/login',
-            {
+        fetch('http://localhost:5000/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include',
+            body: JSON.stringify({
                 usernameOrEmail,
                 password,
-            },
-            {
-                withCredentials: true
-            }
-        );
-            console.log(res);
-            navigate('/');
-        } catch (error) {
-            console.log(error);
-
-            if (error.response && error.response.data.status === 'error') {
-                setError(error.response.data.message)
-            } else {
-                setError('Serverio klaida, pabandykite veliau');
-            }
-        }
+            }),
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.status === 'error') {
+                    setError(data.message)
+                } else {
+                    navigate('/')
+                }
+            })
+            .catch(error => console.log(error));
     }
 
     return (

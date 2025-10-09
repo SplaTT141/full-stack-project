@@ -4,7 +4,7 @@ import logo from "../assets/logo.svg";
 export function Header() {
     return (
             <div className="container">
-                <header className="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+                <header className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-between py-3 mb-4 border-bottom">
                     <Link to="/"
                         className="d-flex gap-3 align-items-center link-body-emphasis text-decoration-none">
                     <img src={logo} alt="logo" width="60" />

@@ -60,24 +60,6 @@ export function Register() {
         }
         
         if (hasError) return;
-
-        // try {
-        //     const res = await axios.post('http://localhost:5000/register', {
-        //         username,
-        //         email,
-        //         password,
-        //     });
-        //     console.log(res.data);
-        //     navigate('/login');
-        // } catch (err) {
-        //     console.log(err);
-
-        //     if (err.response && err.response.data.status === 'error') {
-        //         setError(err.response.data.message);
-        //     } else {
-        //         setError("Serverio klaida, pabandykite veliau");
-        //     }
-        // }
         
         fetch('http://localhost:5000/register', {
             method: 'POST',
@@ -90,16 +72,13 @@ export function Register() {
                 password,
             }),
         })
-            .then(res => {
-                if (!res.ok) {
-                    setError('Klaida');
-                } else {
-                    res.json();
-                }
-            })
+            .then(res => res.json())
             .then(data => {
-                console.log(data)
-                navigate('/login')
+                if (data.status === 'error') {
+                    setError(data.message);
+                } else {
+                    navigate('/login');
+                }
             })
             .catch(error => console.log(error))
 
