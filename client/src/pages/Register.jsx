@@ -1,5 +1,4 @@
 import { useState } from "react";
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { usernameIsInvalid, emailIsInvalid, passwordIsInvalid, passwordRepeatIsInvalid } from "../lib/validation";
 
@@ -24,7 +23,7 @@ export function Register() {
 
     const navigate = useNavigate();
 
-    async function handleSubmit(e) {
+    function handleSubmit(e) {
         e.preventDefault();
 
         setUsernameError('');
@@ -62,23 +61,48 @@ export function Register() {
         
         if (hasError) return;
 
-        try {
-            const res = await axios.post('http://localhost:5000/register', {
+        // try {
+        //     const res = await axios.post('http://localhost:5000/register', {
+        //         username,
+        //         email,
+        //         password,
+        //     });
+        //     console.log(res.data);
+        //     navigate('/login');
+        // } catch (err) {
+        //     console.log(err);
+
+        //     if (err.response && err.response.data.status === 'error') {
+        //         setError(err.response.data.message);
+        //     } else {
+        //         setError("Serverio klaida, pabandykite veliau");
+        //     }
+        // }
+        
+        fetch('http://localhost:5000/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
                 username,
                 email,
                 password,
-            });
-            console.log(res.data);
-            navigate('/login');
-        } catch (err) {
-            console.log(err);
+            }),
+        })
+            .then(res => {
+                if (!res.ok) {
+                    setError('Klaida');
+                } else {
+                    res.json();
+                }
+            })
+            .then(data => {
+                console.log(data)
+                navigate('/login')
+            })
+            .catch(error => console.log(error))
 
-            if (err.response && err.response.data.status === 'error') {
-                setError(err.response.data.message);
-            } else {
-                setError("Serverio klaida, pabandykite veliau");
-            }
-        }
     };
 
     return (
