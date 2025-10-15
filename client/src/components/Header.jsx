@@ -1,7 +1,12 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from "../assets/logo.svg";
+import { useContext } from "react";
+import { UserContext } from "../context/user/UserContext";
 
 export function Header() {
+
+    const {isLoggedIn} = useContext(UserContext);
+
     return (
             <div className="container">
                 <header className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-between py-3 mb-4 border-bottom">
@@ -25,8 +30,19 @@ export function Header() {
                         </li>
                     </ul>
                     <div className="text-end">
-                        <Link to={"/login"} className="btn btn-outline-primary me-2">Prisijungti</Link>
-                        <Link to={"/register"} className="btn btn-primary">Registruotis</Link>
+                        {
+                            isLoggedIn 
+                                ?
+                                    <>
+                                        <Link to={"/logout"} className="btn btn-outline-primary me-2">Atsijungti</Link>
+                                        <Link to={"/dashboard"} className="btn btn-primary">Valdymo skydelis</Link>
+                                    </>
+                                :
+                                    <>
+                                        <Link to={"/login"} className="btn btn-outline-primary me-2">Prisijungti</Link>
+                                        <Link to={"/register"} className="btn btn-primary">Registruotis</Link>
+                                    </>
+                            }
                     </div>
                 </header>
             </div>
