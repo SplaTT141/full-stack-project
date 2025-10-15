@@ -59,7 +59,7 @@ export function Login() {
     return (
     <div className="container">
         <div className="row d-flex justify-content-center">
-            <div className="d-flex justify-content-center flex-column col-6 col-lg-4 col-xl-3 order-2 order-lg-1">
+             <div className="d-flex justify-content-center flex-column col-6 col-lg-4 col-xl-3 order-2 order-lg-1">
                 <p className="text-center text-body h1 fw-bold mb-5 mt-4">Prisijungimas</p>
                 <form onSubmit={handleSubmit}>
                     <div className="mb-3 fw-bold text-danger">{error}</div>
