@@ -5,6 +5,7 @@ import { postLogin } from './api/postLogin.js';
 import { cookieParser } from './middleware/cookieParser.js';
 import { userData } from './middleware/userData.js';
 import { getLogin } from './api/getLogin.js';
+import { postLogout } from './api/postLogout.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -24,6 +25,7 @@ app.get('/login', getLogin);
 
 app.post('/register', postRegister);
 app.post('/login', postLogin);
+app.post('/logout', postLogout);
 
 app.listen(PORT, () => {
     console.log(`Server is running`);

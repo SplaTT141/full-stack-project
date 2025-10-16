@@ -21,7 +21,7 @@ export function Logout() {
                                 <h1>Ar tikrai norite atsijungti?</h1>
                                 <button onClick={handleLogoutClick} className="btn btn-primary mt-4">Atsijungti</button>
                             </div>
-                        : <h1>Tu esi neprisijunges</h1>
+                        : <h1>Tu esi neprisijungęs</h1>
                 }
             </div>
         </div>

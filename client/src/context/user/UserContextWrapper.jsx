@@ -30,11 +30,16 @@ export function UserContextWrapper(props) {
     }
     
     function logout() {
+        fetch('http://localhost:5000/logout', {
+            method: 'POST',
+            credentials: 'include',
+        })
+
         setIsLoggedIn(false);
         setRole('public');
         setEmail('');
         setId('');
-    } 
+    }
 
     const values = {
         isLoggedIn,
