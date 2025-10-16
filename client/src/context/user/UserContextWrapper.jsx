@@ -29,16 +29,22 @@ export function UserContextWrapper(props) {
         setId(userId);
     }
     
-    function logout() {
-        fetch('http://localhost:5000/logout', {
-            method: 'POST',
-            credentials: 'include',
-        })
+    async function logout() {
+        try {
+              const response = await fetch('http://localhost:5000/logout', {
+                method: 'POST',
+                credentials: 'include',
+            })
 
-        setIsLoggedIn(false);
-        setRole('public');
-        setEmail('');
-        setId('');
+            if (response.ok) {
+                setIsLoggedIn(false);
+                setRole('public');
+                setEmail('');
+                setId('');
+            }
+        } catch(error) {
+            console.log(error);
+        }
     }
 
     const values = {
