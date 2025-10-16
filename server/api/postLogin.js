@@ -53,7 +53,14 @@ export async function postLogin(req, res) {
                 path: '/',
             })
 
-            return res.status(200).json({ status: 'success', message: 'Prisijungta sėkmingai' });
+            return res.status(200).json({
+                status: 'success',
+                message: 'Prisijungta sėkmingai',
+                user: {
+                    email: userData.email,
+                    id: userData.id,
+                }
+            });
         } else {
             return res.status(400).json({ status: 'error', message: 'Neteisingi prisijungimo duomenys' });
         }

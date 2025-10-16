@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { passwordIsInvalid, usernameOrEmailIsInvalid } from "../lib/validation";
+import { useContext } from "react";
+import { UserContext } from "../context/user/UserContext";
 
 export function Login() {
     const [usernameOrEmail, setUsernameOrEmail] = useState('');
@@ -12,6 +14,7 @@ export function Login() {
     const [error, setError] = useState('');
 
     const navigate = useNavigate();
+    const {login} = useContext(UserContext);
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -47,10 +50,11 @@ export function Login() {
         })
             .then(res => res.json())
             .then(data => {
-                if (data.status === 'error') {
-                    setError(data.message)
+                if (data.status === 'success') {
+                    login(data.user.email, data.user.id);
+                    navigate('/');
                 } else {
-                    navigate('/')
+                    setError(data.message)
                 }
             })
             .catch(error => console.log(error));
