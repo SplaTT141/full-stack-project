@@ -11,7 +11,7 @@ export function getLogin(req, res) {
                         id: req.user.id
                     },
                 });
-    } else {
-        return res.status(401).json({ status: 'error', message: 'Tu nesi prijungtas prie sistemos' });
     }
+
+    return res.status(401).json({ status: 'error', message: 'Tu nesi prijungtas prie sistemos' });
 }
