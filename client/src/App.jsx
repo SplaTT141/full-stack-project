@@ -8,7 +8,7 @@ import {Reservation} from "./pages/public/Reservation";
 import {NotFound} from "./pages/public/NotFound";
 import { Login } from "./pages/public/Login";
 import { Register } from "./pages/public/Register";
-import { Logout } from "./pages/admin/Logout";
+import { Logout } from "./pages/public/Logout";
 import { Dashboard } from "./pages/admin/Dashboard";
 import { UserContextWrapper } from "./context/user/UserContextWrapper";
 
