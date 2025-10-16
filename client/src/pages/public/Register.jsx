@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate, Link } from 'react-router-dom';
-import { usernameIsInvalid, emailIsInvalid, passwordIsInvalid, passwordRepeatIsInvalid } from "../lib/validation";
+import { usernameIsInvalid, emailIsInvalid, passwordIsInvalid, passwordRepeatIsInvalid } from "../../lib/validation";
 import { useContext } from "react";
-import { UserContext } from "../context/user/UserContext";
+import { UserContext } from "../../context/user/UserContext";
 
 export function Register() {
 

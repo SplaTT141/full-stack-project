@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { passwordIsInvalid, usernameOrEmailIsInvalid } from "../lib/validation";
+import { passwordIsInvalid, usernameOrEmailIsInvalid } from "../../lib/validation";
 import { useContext } from "react";
-import { UserContext } from "../context/user/UserContext";
+import { UserContext } from "../../context/user/UserContext";
 
 export function Login() {
     const [usernameOrEmail, setUsernameOrEmail] = useState('');

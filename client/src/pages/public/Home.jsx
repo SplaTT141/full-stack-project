@@ -1,4 +1,4 @@
-import barbershop from "../assets/barbershop.png";
+import barbershop from "../../assets/barbershop.png";
 import {Link} from "react-router-dom";
 
 export function Home() {
