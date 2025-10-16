@@ -1,6 +1,8 @@
 import { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { usernameIsInvalid, emailIsInvalid, passwordIsInvalid, passwordRepeatIsInvalid } from "../lib/validation";
+import { useContext } from "react";
+import { UserContext } from "../context/user/UserContext";
 
 export function Register() {
 
@@ -22,6 +24,7 @@ export function Register() {
     const [error, setError] = useState('');
 
     const navigate = useNavigate();
+    const {isLoggedIn} = useContext(UserContext);
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -87,74 +90,84 @@ export function Register() {
     return (
     <div className="container">
         <div className="row d-flex justify-content-center">
-            <div className="d-flex justify-content-center flex-column col-6 col-xl-4 order-2 order-lg-1">
-                <p className="text-center text-body h1 fw-bold mb-5 mt-4">Registracija</p>
-                <form onSubmit={handleSubmit}>
-                    <div className="mb-3 fw-bold" style={{color: 'red'}}>{error}</div>
-                    <div className="d-flex flex-row align-items-center mb-4">
-                        <div className="form-outline flex-fill">
-                            <input
-                                onChange={e => setUsername(e.target.value)}
-                                type="text"
-                                id="username"
-                                className={"form-control" + (usernameError ? ' is-invalid' : '')}
-                            />
-                            <label className="form-label" htmlFor="username">Vartotojo vardas</label>
-                            <div style={{color: 'red'}}>{usernameError}</div>
+            {
+                isLoggedIn
+                    ?
+                        <div className="col-12">
+                            <h1>Jūs esate prisijungę</h1>
+                            <p className="fs-6 mt-5">Ar norite atsijungti?</p>
+                            <Link to="/logout" className="btn btn-primary">Atsijungti</Link>
                         </div>
-                    </div>
-                    <div className="d-flex flex-row align-items-center mb-4">
-                        <div className="form-outline flex-fill">
-                            <input
-                                onChange={e => setEmail(e.target.value)}
-                                type="email"
-                                id="email"
-                                className={"form-control" + (emailError ? ' is-invalid' : '')} 
-                            />
-                            <label className="form-label" htmlFor="email">El. paštas</label>
-                            <div style={{color: 'red'}}>{emailError}</div>
+                    :
+                        <div className="d-flex justify-content-center flex-column col-6 col-xl-4 order-2 order-lg-1">
+                            <p className="text-center text-body h1 fw-bold mb-5 mt-4">Registracija</p>
+                            <form onSubmit={handleSubmit}>
+                                <div className="mb-3 fw-bold" style={{color: 'red'}}>{error}</div>
+                                <div className="d-flex flex-row align-items-center mb-4">
+                                    <div className="form-outline flex-fill">
+                                        <input
+                                            onChange={e => setUsername(e.target.value)}
+                                            type="text"
+                                            id="username"
+                                            className={"form-control" + (usernameError ? ' is-invalid' : '')}
+                                        />
+                                        <label className="form-label" htmlFor="username">Vartotojo vardas</label>
+                                        <div style={{color: 'red'}}>{usernameError}</div>
+                                    </div>
+                                </div>
+                                <div className="d-flex flex-row align-items-center mb-4">
+                                    <div className="form-outline flex-fill">
+                                        <input
+                                            onChange={e => setEmail(e.target.value)}
+                                            type="email"
+                                            id="email"
+                                            className={"form-control" + (emailError ? ' is-invalid' : '')} 
+                                        />
+                                        <label className="form-label" htmlFor="email">El. paštas</label>
+                                        <div style={{color: 'red'}}>{emailError}</div>
+                                    </div>
+                                </div>
+                                <div className="d-flex flex-row align-items-center mb-4">
+                                    <div className="form-outline flex-fill">
+                                        <input
+                                            onChange={e => setPassword(e.target.value)}
+                                            type="password"
+                                            id="password"
+                                            className={"form-control" + (passwordError ? ' is-invalid' : '')} 
+                                        />
+                                        <label className="form-label" htmlFor="password">Slaptažodis</label>
+                                        <div style={{color: 'red'}}>{passwordError}</div>
+                                    </div>
+                                </div>
+                                <div className="d-flex flex-row align-items-center mb-4">
+                                    <div className="form-outline flex-fill">
+                                        <input  
+                                            onChange={e => setPasswordRepeat(e.target.value)}
+                                            type="password"
+                                            id="password_confirm"
+                                            className={"form-control" + (passwordRepeatError ? ' is-invalid' : '')} 
+                                        />
+                                        <label className="form-label" htmlFor="password_confirm">Pakartokite slaptažodį</label>
+                                        <div style={{color: 'red'}}>{passwordRepeatError}</div>
+                                    </div>
+                                </div>
+                                <div className="form-check text-body d-flex justify-content-start">
+                                    <input 
+                                        onChange={e => setTos(e.target.checked)}
+                                        className={"form-check-input me-2" + (tosError ? ' is-invalid' : '')} 
+                                        type="checkbox" 
+                                        value="" 
+                                        id="checkbox"
+                                    />
+                                    <label className="form-check-label" htmlFor="checkbox">Sutinku su vartotojo sąlygomis</label>
+                                </div>
+                                <div className="mb-3" style={{color: 'red'}}>{tosError}</div>
+                                <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                    <button type="submit" className="btn btn-primary btn-lg">Registruotis</button>
+                                </div>
+                            </form>
                         </div>
-                    </div>
-                    <div className="d-flex flex-row align-items-center mb-4">
-                        <div className="form-outline flex-fill">
-                            <input
-                                onChange={e => setPassword(e.target.value)}
-                                type="password"
-                                id="password"
-                                className={"form-control" + (passwordError ? ' is-invalid' : '')} 
-                            />
-                            <label className="form-label" htmlFor="password">Slaptažodis</label>
-                            <div style={{color: 'red'}}>{passwordError}</div>
-                        </div>
-                    </div>
-                    <div className="d-flex flex-row align-items-center mb-4">
-                        <div className="form-outline flex-fill">
-                            <input  
-                                onChange={e => setPasswordRepeat(e.target.value)}
-                                type="password"
-                                id="password_confirm"
-                                className={"form-control" + (passwordRepeatError ? ' is-invalid' : '')} 
-                            />
-                            <label className="form-label" htmlFor="password_confirm">Pakartokite slaptažodį</label>
-                            <div style={{color: 'red'}}>{passwordRepeatError}</div>
-                        </div>
-                    </div>
-                    <div className="form-check text-body d-flex justify-content-start">
-                        <input 
-                            onChange={e => setTos(e.target.checked)}
-                            className={"form-check-input me-2" + (tosError ? ' is-invalid' : '')} 
-                            type="checkbox" 
-                            value="" 
-                            id="checkbox"
-                        />
-                        <label className="form-check-label" htmlFor="checkbox">Sutinku su vartotojo sąlygomis</label>
-                    </div>
-                    <div className="mb-3" style={{color: 'red'}}>{tosError}</div>
-                    <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                        <button type="submit" className="btn btn-primary btn-lg">Registruotis</button>
-                    </div>
-                </form>
-            </div>
+            }
         </div>
     </div>
     )

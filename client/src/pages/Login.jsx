@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { passwordIsInvalid, usernameOrEmailIsInvalid } from "../lib/validation";
 import { useContext } from "react";
 import { UserContext } from "../context/user/UserContext";
@@ -14,7 +14,7 @@ export function Login() {
     const [error, setError] = useState('');
 
     const navigate = useNavigate();
-    const {login} = useContext(UserContext);
+    const {login, isLoggedIn} = useContext(UserContext);
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -63,29 +63,43 @@ export function Login() {
     return (
     <div className="container">
         <div className="row d-flex justify-content-center">
-             <div className="d-flex justify-content-center flex-column col-6 col-lg-4 col-xl-3 order-2 order-lg-1">
-                <p className="text-center text-body h1 fw-bold mb-5 mt-4">Prisijungimas</p>
-                <form onSubmit={handleSubmit}>
-                    <div className="mb-3 fw-bold text-danger">{error}</div>
-                    <div className="d-flex flex-row align-items-center mb-4">
-                        <div className="form-outline flex-fill">
-                            <input onChange={e => setUsernameOrEmail(e.target.value)} type="text" id="username_or_email" className={"form-control" + (usernameOrEmailError ? ' is-invalid' : '')} />
-                            <label className="form-label" htmlFor="username_or_email">Vartotojo vardas arba el. paštas</label>
-                            <div className="text-danger">{usernameOrEmailError}</div>
+
+                {
+                    isLoggedIn
+                    ?
+                        <div className="col-12">
+                            <h1>Jūs jau esate prisijungę</h1>
+                            <p className="fs-6 mt-5">Ar norite atsijungti?</p>
+                            <Link to="/logout" className="btn btn-primary">Atsijungti</Link>
                         </div>
-                    </div>
-                    <div className="d-flex flex-row align-items-center mb-4">
-                        <div className="form-outline flex-fill">
-                            <input onChange={e => setPassword(e.target.value)} type="password" id="password" className={"form-control" + (passwordError ? ' is-invalid' : '')} />
-                            <label className="form-label" htmlFor="password">Slaptažodis</label>
-                            <div className="text-danger">{passwordError}</div>
+                    :
+                        <div className="d-flex justify-content-center flex-column col-6 col-lg-4 col-xl-3 order-2 order-lg-1">
+                            <p className="text-center text-body h1 fw-bold mb-5 mt-4">Prisijungimas</p>
+                            <form onSubmit={handleSubmit}>
+                                <div className="mb-3 fw-bold text-danger">{error}</div>
+                                <div className="d-flex flex-row align-items-center mb-4">
+                                    <div className="form-outline flex-fill">
+                                        <input onChange={e=> setUsernameOrEmail(e.target.value)} type="text" id="username_or_email"
+                                            className={"form-control" + (usernameOrEmailError ? ' is-invalid' : '')} />
+                                        <label className="form-label" htmlFor="username_or_email">Vartotojo vardas arba el. paštas</label>
+                                        <div className="text-danger">{usernameOrEmailError}</div>
+                                    </div>
+                                </div>
+                                <div className="d-flex flex-row align-items-center mb-4">
+                                    <div className="form-outline flex-fill">
+                                        <input onChange={e=> setPassword(e.target.value)} type="password" id="password"
+                                            className={"form-control" + (passwordError ? ' is-invalid': '')} />
+                                        <label className="form-label" htmlFor="password">Slaptažodis</label>
+                                        <div className="text-danger">{passwordError}</div>
+                                    </div>
+                                </div>
+                                <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                                    <button type="submit"
+                                        className="btn btn-primary btn-lg">Prisijungti</button>
+                                </div>
+                            </form>
                         </div>
-                    </div>
-                    <div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                        <button type="submit" className="btn btn-primary btn-lg">Prisijungti</button>
-                    </div>
-                </form>
-            </div>
+                }
         </div>
     </div>
     )
