@@ -35,7 +35,7 @@ export function Header() {
                                 ?
                                     <>
                                         <Link to={"/logout"} className="btn btn-outline-primary me-2">Atsijungti</Link>
-                                        <Link to={"/dashboard"} className="btn btn-primary">Valdymo skydelis</Link>
+                                        <Link to={"/admin/dashboard"} className="btn btn-primary">Valdymo skydelis</Link>
                                     </>
                                 :
                                     <>

@@ -3,7 +3,7 @@ import { UserContext } from "../../context/user/UserContext";
 import { LoginRequired } from "../../components/LoginRequired";
 import { Sidebar } from "../../components/Sidebar"
 
-export function Dashboard() {
+export function AdminReservations() {
     const {isLoggedIn} = useContext(UserContext);
 
     return (
@@ -11,7 +11,10 @@ export function Dashboard() {
         {
         isLoggedIn
             ?
-                <Sidebar />
+                <>
+                    <Sidebar />
+                    <h1>Rezervacijos</h1>
+                </>
             :
                 <LoginRequired />
         }           
