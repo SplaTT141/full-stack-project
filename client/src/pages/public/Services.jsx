@@ -1,20 +1,19 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 export function Services() {
 
-    const [service, setService] = useState('');
-    const [duration, setDuration] = useState(0);
-    const [price, setPrice] = useState(0);
+    const [services, setServices] = useState([]);
 
-
+    useEffect(() => {
         fetch('http://localhost:5000/services', {
             method: 'GET'
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data.services)
+                setServices(data.services);
             })
-            .catch(error => console.log(error))
+            .catch(error => console.log(error));
+    }, [])
 
     return (
     <div className="container">
@@ -30,66 +29,21 @@ export function Services() {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Kirpimas vyrams</td>
-                            <td>30 min</td>
-                            <td>15 eu</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Kirpimas moterims</td>
-                            <td>50 min</td>
-                            <td>30 eu</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Vaikų kirpimas</td>
-                            <td>20 min</td>
-                            <td>10 eu</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">4</th>
-                            <td>Plaukų dažymas (viena spalva)</td>
-                            <td>60 min</td>
-                            <td>50 eu</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">5</th>
-                            <td>Sruogos / balayage / ombre</td>
-                            <td>150 min</td>
-                            <td>100 eu</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">6</th>
-                            <td>Plaukų tonavimas / atspalvio korekcija</td>
-                            <td>45 min</td>
-                            <td>40 eu</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">7</th>
-                            <td>Plaukų tiesinimas keratinu</td>
-                            <td>150 min</td>
-                            <td>100 eu</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">8</th>
-                            <td>Plaukų garbanojimas / šukuosena šventei</td>
-                            <td>90 min</td>
-                            <td>40 eu</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">9</th>
-                            <td>Plaukų priežiūros procedūros (kaukės, maitinimas, atkūrimas)</td>
-                            <td>50 min</td>
-                            <td>25 eu</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">10</th>
-                            <td>Barzdos priežiūra ir skutimas</td>
-                            <td>15 min</td>
-                            <td>10 eu</td>
-                        </tr>
+                        {(services.length) 
+                            ?
+                                services.map((service,index) => (
+                                    <tr key={index}>
+                                        <th>{index + 1}</th>
+                                        <td>{service.service}</td>
+                                        <td>{service.duration} min</td>
+                                        <td>{service.price} eu</td>
+                                    </tr>
+                                ))
+                            :
+                                <tr>
+                                    <td colSpan="4">Loading...</td>
+                                </tr>
+                        }
                     </tbody>
                 </table>
             </div>
