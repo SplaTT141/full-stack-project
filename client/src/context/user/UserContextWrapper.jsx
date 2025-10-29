@@ -5,6 +5,7 @@ import { initialUserContext } from "./initialUserContext"
 export function UserContextWrapper(props) {
     const [isLoggedIn, setIsLoggedIn] = useState(initialUserContext.isLoggedIn);
     const [role, setRole] = useState(initialUserContext.role);
+    const [username, setUsername] = useState(initialUserContext.username);
     const [email, setEmail] = useState(initialUserContext.email);
     const [id, setId] = useState(initialUserContext.id);
 
@@ -16,17 +17,18 @@ export function UserContextWrapper(props) {
             .then(res => res.json())
             .then(data => {
                 if (data.status === 'success') {
-                    login(data.user.email, data.user.id);
+                    login(data.user.username, data.user.email, data.user.id);
                 }
             })
             .catch(error => console.log(error));
     }, []);
 
-    function login(email, userId) {
+    function login(username, email, id) {
         setIsLoggedIn(true);
         setRole('admin');
+        setUsername(username);
         setEmail(email);
-        setId(userId);
+        setId(id);
     }
     
     async function logout() {
@@ -50,6 +52,7 @@ export function UserContextWrapper(props) {
     const values = {
         isLoggedIn,
         role,
+        username,
         email,
         id,
         login,

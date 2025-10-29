@@ -57,6 +57,7 @@ export async function postLogin(req, res) {
                 status: 'success',
                 message: 'Prisijungta sėkmingai',
                 user: {
+                    username: userData.username,
                     email: userData.email,
                     id: userData.id,
                 }

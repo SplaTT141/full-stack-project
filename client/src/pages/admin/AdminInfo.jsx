@@ -4,7 +4,8 @@ import { LoginRequired } from "../../components/LoginRequired";
 import { Sidebar } from "../../components/Sidebar";
 
 export function AdminInfo() {
-    const {isLoggedIn} = useContext(UserContext);
+    const {isLoggedIn, email, username, id} = useContext(UserContext);
+    console.log(id);
 
     return (
         <div className="container">
@@ -13,7 +14,18 @@ export function AdminInfo() {
                 ? 
                     <div className="d-flex flex-wrap">
                         <Sidebar />
-                        <h1>Vartotojo info:</h1>
+                        <div>
+                            <h1 className="mb-4">Jūsų duomenys:</h1>
+                            <h5>ID:  
+                                <span className="text-primary"> {id}</span>
+                            </h5>
+                            <h5>Vartotojo vardas: 
+                                <span className="text-primary"> {username}</span>
+                            </h5>
+                            <h5>Elektronis paštas:
+                                <span className="text-primary"> {email}</span>
+                            </h5>
+                        </div>
                     </div>
                 : <LoginRequired />
             }
