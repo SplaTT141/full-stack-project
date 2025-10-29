@@ -6,6 +6,7 @@ import { cookieParser } from './middleware/cookieParser.js';
 import { userData } from './middleware/userData.js';
 import { getLogin } from './api/getLogin.js';
 import { postLogout } from './api/postLogout.js';
+import { getServices } from './api/getServices.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -22,6 +23,7 @@ app.get('/', (req, res) => {
     res.send("It's alive!");
 });
 app.get('/login', getLogin);
+app.get('/services', getServices);
 
 app.post('/register', postRegister);
 app.post('/login', postLogin);

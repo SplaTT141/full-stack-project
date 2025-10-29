@@ -1,4 +1,21 @@
+import { useState } from "react"
+
 export function Services() {
+
+    const [service, setService] = useState('');
+    const [duration, setDuration] = useState(0);
+    const [price, setPrice] = useState(0);
+
+
+        fetch('http://localhost:5000/services', {
+            method: 'GET'
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data.services)
+            })
+            .catch(error => console.log(error))
+
     return (
     <div className="container">
         <div className="bd-example-snippet bd-code-snippet py-5">
