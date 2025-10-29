@@ -11,10 +11,10 @@ export function AdminInfo() {
             {
               isLoggedIn 
                 ? 
-                    <>
+                    <div className="d-flex flex-wrap">
                         <Sidebar />
-                        <h1>Vartotojo informacija</h1>
-                    </>
+                        <h1>Vartotojo info:</h1>
+                    </div>
                 : <LoginRequired />
             }
         </div>

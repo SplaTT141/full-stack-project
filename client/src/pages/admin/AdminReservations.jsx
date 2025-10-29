@@ -11,10 +11,10 @@ export function AdminReservations() {
         {
         isLoggedIn
             ?
-                <>
+                <div className="d-flex flex-wrap">
                     <Sidebar />
                     <h1>Rezervacijos</h1>
-                </>
+                </div>
             :
                 <LoginRequired />
         }           

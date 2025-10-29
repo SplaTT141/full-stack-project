@@ -11,10 +11,10 @@ export function AdminServices() {
             {
               isLoggedIn 
                 ? 
-                    <>
+                    <div className="d-flex flex-wrap">
                         <Sidebar />
-                        <h1>Kirpyklos paslaugos</h1>
-                    </>
+                        <h1>Paslaugos</h1>
+                    </div>
                 : <LoginRequired />
             }
         </div>

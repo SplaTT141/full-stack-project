@@ -11,7 +11,10 @@ export function Dashboard() {
         {
         isLoggedIn
             ?
-                <Sidebar />
+                <div className="d-flex flex-wrap">
+                    <Sidebar />
+                    <h1>Sveiki atvykę į valdymo skydelį!</h1>
+                </div>
             :
                 <LoginRequired />
         }           
