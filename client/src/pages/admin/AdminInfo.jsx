@@ -5,10 +5,9 @@ import { Sidebar } from "../../components/Sidebar";
 
 export function AdminInfo() {
     const {isLoggedIn, email, username, id} = useContext(UserContext);
-    console.log(id);
 
     return (
-        <div className="container">
+        <div className="container-fluid">
             {
               isLoggedIn 
                 ? 

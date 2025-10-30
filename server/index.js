@@ -7,6 +7,7 @@ import { userData } from './middleware/userData.js';
 import { getLogin } from './api/getLogin.js';
 import { postLogout } from './api/postLogout.js';
 import { getServices } from './api/getServices.js';
+import { deleteService } from './api/deleteService.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -28,6 +29,8 @@ app.get('/services', getServices);
 app.post('/register', postRegister);
 app.post('/login', postLogin);
 app.post('/logout', postLogout);
+
+app.delete('/admin/services/:id', deleteService);
 
 app.listen(PORT, () => {
     console.log(`Server is running`);

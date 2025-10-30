@@ -7,7 +7,7 @@ export function Dashboard() {
     const {isLoggedIn} = useContext(UserContext);
 
     return (
-        <div className="container">
+        <div className="container-fluid">
         {
         isLoggedIn
             ?
