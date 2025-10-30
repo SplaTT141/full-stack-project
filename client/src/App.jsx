@@ -14,6 +14,7 @@ import { UserContextWrapper } from "./context/user/UserContextWrapper";
 import { AdminServices } from "./pages/admin/AdminServices";
 import { AdminInfo } from "./pages/admin/AdminInfo";
 import { AdminReservations } from "./pages/admin/AdminReservations";
+import { AdminAddService } from "./pages/admin/AdminAddService";
 
 function App() {
 
@@ -29,10 +30,12 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/logout" element={<Logout />} />
+
           <Route path="/admin/dashboard" element={<Dashboard />} />
           <Route path="/admin/services" element={<AdminServices />} />
           <Route path="/admin/info" element={<AdminInfo />} />
           <Route path="/admin/reservations" element={<AdminReservations />} />
+          <Route path="/admin/services/add" element={<AdminAddService />} />
           <Route path="*" element={<NotFound />}/>
         </Routes>
         <Footer />

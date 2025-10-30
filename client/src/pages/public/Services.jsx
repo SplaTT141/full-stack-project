@@ -36,7 +36,7 @@ export function Services() {
                                         <th>{index + 1}</th>
                                         <td>{service.service}</td>
                                         <td>{service.duration} min</td>
-                                        <td>{service.price} eu</td>
+                                        <td>{service.price} €</td>
                                     </tr>
                                 ))
                             :

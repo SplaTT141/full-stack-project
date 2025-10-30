@@ -3,6 +3,7 @@ import { UserContext } from "../../context/user/UserContext";
 import { useEffect, useState } from "react"
 import { LoginRequired } from "../../components/LoginRequired";
 import { Sidebar } from "../../components/Sidebar";
+import { Link } from "react-router-dom";
 
 export function AdminServices() {
     const {isLoggedIn} = useContext(UserContext);
@@ -20,7 +21,10 @@ export function AdminServices() {
                 .catch(error => console.log(error));
         }, [])
 
-        async function handleServiceDelete(id) {
+        async function handleClickDeleteService(id) {
+            const confirmDelete = window.confirm("Ar tikrai norite ištrinti šią paslaugą?");
+            if (!confirmDelete) return;
+
             try {
                 await fetch(`http://localhost:5000/admin/services/${id}`, {
                     method: 'DELETE',
@@ -37,11 +41,14 @@ export function AdminServices() {
             {
                 isLoggedIn
                     ?
-                    <div className="d-flex">
+                    <div className="d-flex flex-wrap">
                         <Sidebar />
                         <div className="bd-example-snippet bd-code-snippet col-8">
                             <div className="bd-example m-0 border-0">
-                                <h1>Paslaugos</h1>
+                                <div className="d-flex justify-content-between align-items-center">
+                                    <h1>Paslaugos</h1>
+                                    <Link to={'add'} className="btn btn-success">Pridėti paslaugą +</Link>
+                                </div>
                                 <table className="table table-striped table-hover">
                                     <thead>
                                         <tr>
@@ -60,10 +67,10 @@ export function AdminServices() {
                                                     <th>{index + 1}</th>
                                                     <td>{service.service}</td>
                                                     <td>{service.duration} min</td>
-                                                    <td>{service.price} eu</td>
+                                                    <td>{service.price} €</td>
                                                     <td>
                                                         <button className="btn btn-warning me-2">Redaguoti</button>
-                                                        <button onClick={() => handleServiceDelete(service.id)} className="btn btn-danger">Panaikinti</button>
+                                                        <button onClick={() => handleClickDeleteService(service.id)} className="btn btn-danger">Panaikinti</button>
                                                     </td>
                                                 </tr>
                                             ))
