@@ -8,6 +8,7 @@ import { getLogin } from './api/getLogin.js';
 import { postLogout } from './api/postLogout.js';
 import { getServices } from './api/getServices.js';
 import { deleteService } from './api/deleteService.js';
+import { postService } from './api/postService.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -29,6 +30,7 @@ app.get('/services', getServices);
 app.post('/register', postRegister);
 app.post('/login', postLogin);
 app.post('/logout', postLogout);
+app.post('/admin/services', postService);
 
 app.delete('/admin/services/:id', deleteService);
 

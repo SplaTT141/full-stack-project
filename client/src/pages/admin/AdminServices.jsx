@@ -20,8 +20,16 @@ export function AdminServices() {
                 .catch(error => console.log(error));
         }, [])
 
-        function handleServiceDelete() {
-            
+        async function handleServiceDelete(id) {
+            try {
+                await fetch(`http://localhost:5000/admin/services/${id}`, {
+                    method: 'DELETE',
+                })
+            } catch (error) {
+                console.log(error);
+            }
+
+            setServices(prev => prev.filter(service => service.id !== id));
         }
 
     return (
@@ -55,7 +63,7 @@ export function AdminServices() {
                                                     <td>{service.price} eu</td>
                                                     <td>
                                                         <button className="btn btn-warning me-2">Redaguoti</button>
-                                                        <button className="btn btn-danger">Panaikinti</button>
+                                                        <button onClick={() => handleServiceDelete(service.id)} className="btn btn-danger">Panaikinti</button>
                                                     </td>
                                                 </tr>
                                             ))

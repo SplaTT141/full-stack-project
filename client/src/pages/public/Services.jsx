@@ -15,7 +15,7 @@ export function Services() {
             .catch(error => console.log(error));
     }, [])
 
-    return (
+    return ( 
     <div className="container">
         <div className="bd-example-snippet bd-code-snippet py-5">
             <div className="bd-example m-0 border-0">
