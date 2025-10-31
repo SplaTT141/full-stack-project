@@ -3,18 +3,47 @@ import { LoginRequired } from "../../components/LoginRequired";
 import { useContext, useState } from "react";
 import { UserContext } from "../../context/user/UserContext";
 import { useNavigate } from "react-router-dom";
+import { serviceNameIsInvalid, serviceDurationIsInvalid, servicePriceIsInvalid } from "../../lib/validation";
 
 export function AdminAddService() {
     const {isLoggedIn} = useContext(UserContext);
 
     const [service, setService] = useState('');
+    const [serviceError, setServiceError] = useState('');
+
     const [duration, setDuration] = useState(0);
+    const [durationError, setDurationError] = useState('');
+
     const [price, setPrice] = useState(0);
+    const [priceError, setPriceError] = useState('');
 
     const navigate = useNavigate();
 
     function handleSubmit(e) {
         e.preventDefault();
+
+        setServiceError('');
+        setDurationError('');
+        setPriceError('');
+
+        let hasError = false
+
+        if (serviceNameIsInvalid(service)) {
+            setServiceError(serviceNameIsInvalid(service));
+            hasError = true;
+        }
+
+        if (serviceDurationIsInvalid(duration)) {
+            setDurationError(serviceDurationIsInvalid(duration));
+            hasError = true;
+        }
+
+        if (servicePriceIsInvalid(price)) {
+            setPriceError(servicePriceIsInvalid(price));
+            hasError = true;
+        }
+
+        if (hasError) return;
 
         fetch('http://localhost:5000/admin/services', {
             method: 'POST',
@@ -49,14 +78,17 @@ export function AdminAddService() {
                         <div className="mb-3 mt-5">
                             <label htmlFor="service" className="form-label">Paslaugos pavadinimas</label>
                             <input onChange={e => setService(e.target.value)} type="text" id="service" className="form-control" required />
+                            <div style={{color: 'red'}}>{serviceError}</div>
                         </div>
                         <div className="mb-3">
                             <label htmlFor="duration" className="form-label">Trukmė minutėm</label>
                             <input onChange={e => setDuration(e.target.value)} type="number" className="form-control" id="duration" required />
+                            <div style={{color: 'red'}}>{durationError}</div>
                         </div>
                         <div className="mb-3">
                             <label htmlFor="price" className="form-label">Kaina €</label>
                             <input onChange={e => setPrice(e.target.value)} type="number" id="price" className="form-control" required />
+                            <div style={{color: 'red'}}>{priceError}</div>
                         </div>
                         <button type="submit" className="btn btn-primary mt-3">Patvirtinti</button>
                     </form>

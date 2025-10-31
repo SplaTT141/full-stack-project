@@ -111,3 +111,60 @@ export function usernameOrEmailIsInvalid(usernameOrEmail) {
 
     return '';
 }
+
+export function serviceNameIsInvalid(service) {
+    if (!service) {
+        return `Paslaugos pavadinimas yra privalomas`;
+    }
+
+    if (typeof service !== 'string') {
+        return `Paslaugos pavadinimas turi būti tekstas`;
+    }
+
+    if (service.length < 5) {
+        return `Paslaugos pavadinimas turi sudaryti bent 5 simboliai`;
+    }
+
+    if (service.length > 200) {
+        return `Paslaugos pavadinimas turi sudaryti ne daugiau 200 simbolių`;
+    }
+
+    const validSymbols = 'qwertyuiopasdfghjklzxcvbnmąčęėįšųūĄČĘĖĮŠŲŪ9QWERTYUIOPASDFGHJKLZXCVBNM0123456789 ';
+    const foundInvalidSymbols = [];
+
+    for (const s of service) {
+        if (!validSymbols.includes(s)) {
+            foundInvalidSymbols.push(s);
+        }
+    }
+
+    if (foundInvalidSymbols.length) {
+        return `Paslaugos pavadinime yra neleistini simboliai: ${foundInvalidSymbols.join(', ')}`;
+    }
+
+    return '';
+}
+
+export function serviceDurationIsInvalid(duration) {
+    if (duration === undefined || duration === null) {
+        return `Privalote nurodyti paslaugos trukmę`;
+    }
+
+    if (duration > 1000) {
+        return `Trukmė negali būti ilgesnė nei 1000 min`;
+    }
+
+    return '';
+}
+
+export function servicePriceIsInvalid(price) {
+    if (price === undefined || price === null) {
+        return `Privalote nurodyti paslaugos kainą`;
+    }
+
+    if (price > 3000) {
+        return `Kaina negali viršyti 3000€`;
+    }
+
+    return '';
+}
