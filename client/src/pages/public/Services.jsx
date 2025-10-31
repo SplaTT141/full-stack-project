@@ -3,6 +3,7 @@ import { useEffect, useState } from "react"
 export function Services() {
 
     const [services, setServices] = useState([]);
+    const [error, setError] = useState('');
 
     useEffect(() => {
         fetch('http://localhost:5000/services', {
@@ -10,7 +11,11 @@ export function Services() {
         })
             .then(res => res.json())
             .then(data => {
-                setServices(data.services);
+                if (data.status === 'success') {
+                    setServices(data.services);
+                } else {
+                    setError('Nepavyko įkelti pasulaugų');
+                }
             })
             .catch(error => console.log(error));
     }, [])
@@ -19,6 +24,7 @@ export function Services() {
     <div className="container">
         <div className="bd-example-snippet bd-code-snippet py-5">
             <div className="bd-example m-0 border-0">
+                <div className="mb-3 fw-bold" style={{color: 'red'}}>{error}</div>
                 <table className="table table-striped table-hover">
                     <thead>
                         <tr>
@@ -41,7 +47,7 @@ export function Services() {
                                 ))
                             :
                                 <tr>
-                                    <td colSpan="4">Loading...</td>
+                                    <td colSpan="4">Kraunasi...</td>
                                 </tr>
                         }
                     </tbody>

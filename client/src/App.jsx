@@ -15,6 +15,7 @@ import { AdminServices } from "./pages/admin/AdminServices";
 import { AdminInfo } from "./pages/admin/AdminInfo";
 import { AdminReservations } from "./pages/admin/AdminReservations";
 import { AdminAddService } from "./pages/admin/AdminAddService";
+import { AdminEditService } from "./pages/admin/AdminEditService";
 
 function App() {
 
@@ -36,6 +37,7 @@ function App() {
           <Route path="/admin/info" element={<AdminInfo />} />
           <Route path="/admin/reservations" element={<AdminReservations />} />
           <Route path="/admin/services/add" element={<AdminAddService />} />
+          <Route path="/admin/services/edit/:id" element={<AdminEditService />} />
           <Route path="*" element={<NotFound />}/>
         </Routes>
         <Footer />

@@ -9,6 +9,7 @@ export function AdminServices() {
     const {isLoggedIn} = useContext(UserContext);
 
         const [services, setServices] = useState([]);
+        const [error, setError] = useState('');
     
         useEffect(() => {
             fetch('http://localhost:5000/services', {
@@ -16,7 +17,11 @@ export function AdminServices() {
             })
                 .then(res => res.json())
                 .then(data => {
-                    setServices(data.services);
+                    if (data.status === 'success') {
+                        setServices(data.services);
+                    } else {
+                        setError('Nepavyko įkelti pasulaugų');
+                    }
                 })
                 .catch(error => console.log(error));
         }, [])
@@ -49,6 +54,7 @@ export function AdminServices() {
                                     <h1>Paslaugos</h1>
                                     <Link to={'add'} className="btn btn-success">Pridėti paslaugą +</Link>
                                 </div>
+                                <div className="mb-3 fw-bold" style={{color: 'red'}}>{error}</div>
                                 <table className="table table-striped table-hover">
                                     <thead>
                                         <tr>
@@ -69,14 +75,14 @@ export function AdminServices() {
                                                     <td>{service.duration} min</td>
                                                     <td>{service.price} €</td>
                                                     <td>
-                                                        <button className="btn btn-warning me-2">Redaguoti</button>
+                                                        <Link to={`edit/${service.id}`} className="btn btn-warning me-2">Redaguoti</Link>
                                                         <button onClick={() => handleClickDeleteService(service.id)} className="btn btn-danger">Panaikinti</button>
                                                     </td>
                                                 </tr>
                                             ))
                                             :
                                             <tr>
-                                                <td colSpan="4">Loading...</td>
+                                                <td colSpan="4">Kraunasi...</td>
                                             </tr>
                                         }
                                     </tbody>
