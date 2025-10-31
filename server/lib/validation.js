@@ -68,3 +68,41 @@ export function loginValidation(data) {
 
     return schema.validate(data);
 }
+
+export function newServiceValidation(data) {
+    const schema = Joi.object({
+        service: Joi.string()
+            .min(5)
+            .max(200)
+            .pattern(/^[a-zA-Z0-9ąčęėįšųūĄČĘĖĮŠŲŪ ]+$/)
+            .required()
+            .messages({
+                'string.min': 'Paslaugos pavadinimą turi sudaryti bent 5 simboliai',
+                'string.max': 'Paslaugos pavadinimą turi sudaryti ne daugiau 200 simbolių',
+                'string.pattern.base': 'Paslaugos pavadinimas gali turėti tik raides ir skaičius',
+                'any.required': 'Paslaugos pavadinimas yra privalomas',
+            }),
+        duration: Joi.number()
+            .integer()
+            .min(0)
+            .max(1000)
+            .required()
+            .messages({
+                'number.integer': 'Trukmė turi būti sveikasis skaičius',
+                'number.min': 'Trukmė negali būti neigiamas skaičius',
+                'number.max': 'Trukmė negali būti ilgesnė nei 1000 min',
+                'any.required': 'Trukmė yra privaloma',
+            }),
+        price: Joi.number()
+            .min(0)
+            .max(3000)
+            .required()
+            .messages({
+                'number.min': 'Kaina negali būti neigiamas skaičius',
+                'number.max': 'Kaina negali būti didesnė nei 3000€',
+                'any.required': 'Kaina yra privaloma',
+            })
+    });
+
+    return schema.validate(data);
+}

@@ -6,9 +6,7 @@ export async function postRegister(req, res) {
     const { username, email, password } = req.body;
 
     const { error } = registerValidation({ username, email, password });
-    if (error) {
-        return res.status(400).json({ status: 'error', message: error.details[0].message });
-    }
+    if (error) return res.status(400).json({ status: 'error', message: error.details[0].message });
 
     try {
         const sql = `SELECT username, email FROM users WHERE username = ? OR email = ?;`;

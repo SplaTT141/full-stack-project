@@ -17,6 +17,8 @@ export function AdminAddService() {
     const [price, setPrice] = useState(0);
     const [priceError, setPriceError] = useState('');
 
+    const [error, setError] = ('');
+
     const navigate = useNavigate();
 
     function handleSubmit(e) {
@@ -56,7 +58,9 @@ export function AdminAddService() {
         })
             .then(res => res.json())
             .then(data => {
-                if (data.status === 'success') {
+                if (data.status === 'error') {
+                    setError(data.message);
+                } else {
                     navigate('/admin/services')
                 }
             })
@@ -75,7 +79,8 @@ export function AdminAddService() {
                 <div className="bd-example m-0 border-0">
                     <h1>Pridėti paslaugą</h1>
                     <form onSubmit={handleSubmit}>
-                        <div className="mb-3 mt-5">
+                        <div className="mb-3 fw-bold" style={{color: 'red'}}>{error}</div>
+                        <div className="mb-3">
                             <label htmlFor="service" className="form-label">Paslaugos pavadinimas</label>
                             <input onChange={e => setService(e.target.value)} type="text" id="service" className="form-control" required />
                             <div style={{color: 'red'}}>{serviceError}</div>

@@ -150,7 +150,21 @@ export function serviceDurationIsInvalid(duration) {
         return `Privalote nurodyti paslaugos trukmę`;
     }
 
-    if (duration > 1000) {
+    const num = +duration;
+
+    if (Number.isNaN(num)) {
+        return `Trukmė turi būti skaičiaus tipo`
+    }
+
+    if (!Number.isInteger(num)) {
+        return `Trukmė turi būti sveikasis skaičius`
+    }
+
+    if (num < 0) {
+        return `Trukmė negali būti neigiamas skaičius`;
+    }
+
+    if (num > 1000) {
         return `Trukmė negali būti ilgesnė nei 1000 min`;
     }
 
@@ -162,7 +176,17 @@ export function servicePriceIsInvalid(price) {
         return `Privalote nurodyti paslaugos kainą`;
     }
 
-    if (price > 3000) {
+    const num = +price;
+
+    if (Number.isNaN(num)) {
+        return `Kaina turi būti skaičiaus tipo`
+    }
+
+    if (num < 0) {
+        return `Kaina negali būti neigiamas skaičius`;
+    }
+
+    if (num > 3000) {
         return `Kaina negali viršyti 3000€`;
     }
 
