@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import helmet from 'helmet';
 import { postRegister } from './api/postRegister.js';
 import { postLogin } from './api/postLogin.js';
 import { cookieParser } from './middleware/cookieParser.js';
@@ -9,7 +10,7 @@ import { postLogout } from './api/postLogout.js';
 import { getServices } from './api/getServices.js';
 import { deleteService } from './api/deleteService.js';
 import { postService } from './api/postService.js';
-import helmet from 'helmet';
+import { putService } from './api/putService.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -33,6 +34,8 @@ app.post('/register', postRegister);
 app.post('/login', postLogin);
 app.post('/logout', postLogout);
 app.post('/admin/services', postService);
+
+app.put('/admin/services/:id', putService);
 
 app.delete('/admin/services/:id', deleteService);
 
