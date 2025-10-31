@@ -9,11 +9,13 @@ import { postLogout } from './api/postLogout.js';
 import { getServices } from './api/getServices.js';
 import { deleteService } from './api/deleteService.js';
 import { postService } from './api/postService.js';
+import helmet from 'helmet';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
+app.use(helmet());
 app.use(cors({
     origin: "http://localhost:5173",
     credentials: true,
