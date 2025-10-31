@@ -35,7 +35,7 @@ app.post('/login', postLogin);
 app.post('/logout', postLogout);
 app.post('/admin/services', postService);
 
-app.put('/admin/services/:id', putService);
+app.put('/admin/services/edit', putService);
 
 app.delete('/admin/services/:id', deleteService);
 
