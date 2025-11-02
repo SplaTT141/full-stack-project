@@ -43,9 +43,9 @@ Would like to run this project locally? Open terminal and follow these steps:
 
 1. Atsisiųsti kloną iš nuorodos:
 
-```sh
-https://github.com/SplaTT141/full-stack-project
-```
+   ```sh
+   https://github.com/SplaTT141/full-stack-project
+   ```
 
 2. Įdiegti pagrindines NPM priklausomybes
    ```sh
@@ -84,5 +84,4 @@ https://github.com/SplaTT141/full-stack-project
 
 ```
 
-`
 ```
