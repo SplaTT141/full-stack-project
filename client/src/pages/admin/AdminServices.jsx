@@ -33,6 +33,7 @@ export function AdminServices() {
             try {
                 await fetch(`http://localhost:5000/admin/services/${id}`, {
                     method: 'DELETE',
+                    credentials: "include",
                 })
             } catch (error) {
                 console.log(error);
