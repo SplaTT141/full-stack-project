@@ -13,10 +13,9 @@ Node.js
 xampp
 🧰 Pradedant
 Node.js - atsisiunčiame ir įstaliuojame.
-
 https://nodejs.org
-Git - atsisiunčiame ir įstaliuojame.
 
+Git - atsisiunčiame ir įstaliuojame.
 https://git-scm.com
 
 Xampp - atsisiunčiame ir įsirašome.
