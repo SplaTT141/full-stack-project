@@ -47,8 +47,6 @@ Would like to run this project locally? Open terminal and follow these steps:
 https://github.com/SplaTT141/full-stack-project
 ```
 
-````
-
 2. Įdiegti pagrindines NPM priklausomybes
    ```sh
    npm i
@@ -58,6 +56,7 @@ https://github.com/SplaTT141/full-stack-project
    ```sh
     npm run install-all
    ```
+
 4. Paleisti serverius
    ```sh
    npm run dev
@@ -82,6 +81,8 @@ https://github.com/SplaTT141/full-stack-project
    .env.development
 
    .env.production
-````
+
+```
 
 `
+```
