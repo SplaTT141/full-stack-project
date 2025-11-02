@@ -64,23 +64,23 @@ Would like to run this project locally? Open terminal and follow these steps:
 
 ## 🎅 Autorius
 
-6. Ernest: [Github](https://github.com/splatt141)
+Ernest: [Github](https://github.com/splatt141)
 
-   Prisijungimai:
+Prisijungimai:
 
-   Prisijungimo vardas: Egzaminas
+Prisijungimo vardas: Egzaminas
 
-   slaptažodis:egzaminas
+slaptažodis:egzaminas
 
-   email:egzaminas@egzaminas.lt
+email:egzaminas@egzaminas.lt
 
-7. P.S.
+P.S.
 
-   šie failai nevieši, jie githut netalpinami:
+šie failai nevieši, jie githut netalpinami:
 
-   .env.development
+.env.development
 
-   .env.production
+.env.production
 
 ```
 
