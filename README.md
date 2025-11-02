@@ -1,69 +1,102 @@
-Egzamino užduotis - Grožio paslaugų svetainė
-website design project
+# Kirpykla - egzamino pasiruošimo užduotis
 
-🌟 Apie
-Grožio paslaugų puslapio projektas
+<br>
 
-🎯 Paslaugos veiks per šias programas:
-CLIENT: react.js
-SERVER: express.js
-API
-SQL
-Node.js
-xampp
-🧰 Pradedant
+## 🌟 Apie
+
+Kirpimo paslaugų puslapio projektas
+
+## 🎯 Paslaugos veiks per šias programas:
+
+- CLIENT: react.js
+- SERVER: express.js
+-
+- API
+- SQL
+- Node.js
+- xampp
+-
+
+## 🧰 Pradedant
+
 Node.js - atsisiunčiame ir įstaliuojame.
+
+```
 https://nodejs.org
+```
 
 Git - atsisiunčiame ir įstaliuojame.
+
+```
 https://git-scm.com
 
 Xampp - atsisiunčiame ir įsirašome.
+
+```
+
 https://www.apachefriends.org/download.html
 
-🏃 Jeigu norime pasileisti local server:
+````
+
+### 🏃 Jeigu norime pasileisti local server:
+
 Would like to run this project locally? Open terminal and follow these steps:
 
-Atsisiųsti kloną iš nuorodos:
+1. Atsisiųsti kloną iš nuorodos:
+   ```sh
+       https://github.com/PovDai/55-grupe-egzas.git
+````
 
-    https://github.com/PovDai/55-grupe-egzas.git
+2. Client, Server ir pagrindinėje dalyje instaliuoti:
+   ```sh
+   npm init -y
+   ```
+3. Client dalyje atskirai instaliuoti:
 
-Client, Server ir pagrindinėje dalyje instaliuoti:
+   ```sh
+   npm create vite@latest .
+   tada pasirinkti: react
+   tada pasirinkti: javascript
 
-npm init -y
-Client dalyje atskirai instaliuoti:
+   papildomai instaliuoti:
+   npm i react-router
 
-npm create vite@latest .
-tada pasirinkti: react
-tada pasirinkti: javascript
+   ```
 
-papildomai instaliuoti:
-npm i react-router
-Server dalyje atskirai instaliuoti: npm i express npm i dotenv npm i mysql2 npm install cors npm i helmet npm i multer
+4. Server dalyje atskirai instaliuoti:
+   npm i express
+   npm i dotenv
+   npm i mysql2
+   npm install cors
+   npm i helmet
+   npm i multer
 
-Run the servers pagrindinėje dalyje instaliuoti:
+5. Run the servers pagrindinėje dalyje instaliuoti:
 
-npm install npm-run-all
+   ```sh
+   npm install npm-run-all
 
-po šio galime node.js įrašyti
+   po šio galime node.js įrašyti
 
-npm run dev
+   npm run dev
+   ```
 
-🎅 Autorius
-Povilas: Github
+## 🎅 Autorius
 
-Prisijungimai:
+6. Povilas: [Github](https://github.com/PovDai)
 
-Prisijungimo vardas: Egzaminas
+   Prisijungimai:
 
-slaptažodis:egzaminas
+   Prisijungimo vardas: Egzaminas
 
-email:egzaminas@egzaminas.lt
+   slaptažodis:egzaminas
 
-P.S.
+   email:egzaminas@egzaminas.lt
 
-šie failai nevieši, jie githut netalpinami:
+7. P.S.
 
-.env.development
+   šie failai nevieši, jie githut netalpinami:
 
-.env.production
+   .env.development
+
+   .env.production
