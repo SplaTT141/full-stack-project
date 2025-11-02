@@ -42,49 +42,30 @@ https://www.apachefriends.org/download.html
 Would like to run this project locally? Open terminal and follow these steps:
 
 1. Atsisiųsti kloną iš nuorodos:
-   ```sh
-       https://github.com/PovDai/55-grupe-egzas.git
-   ```
+
+```
+https://github.com/SplaTT141/full-stack-project
+```
 
 ````
 
-2. Client, Server ir pagrindinėje dalyje instaliuoti:
-   ```sh
-   npm init -y
+2. Įdiegti pagrindines NPM priklausomybes
    ```
-3. Client dalyje atskirai instaliuoti:
-
-   ```sh
-   npm create vite@latest .
-   tada pasirinkti: react
-   tada pasirinkti: javascript
-
-   papildomai instaliuoti:
-   npm i react-router
+   npm i
+   ```
+3. Įdiegti priklausomybes subkataloguose
 
    ```
-
-4. Server dalyje atskirai instaliuoti:
-   npm i express
-   npm i dotenv
-   npm i mysql2
-   npm install cors
-   npm i helmet
-   npm i multer
-
-5. Run the servers pagrindinėje dalyje instaliuoti:
-
-   ```sh
-   npm install npm-run-all
-
-   po šio galime node.js įrašyti
-
+    npm run install-all
+   ```
+4. Paleisti serverius
+   ```
    npm run dev
    ```
 
 ## 🎅 Autorius
 
-6. Povilas: [Github](https://github.com/PovDai)
+6. Ernest: [Github](https://github.com/splatt141)
 
    Prisijungimai:
 
@@ -102,3 +83,5 @@ Would like to run this project locally? Open terminal and follow these steps:
 
    .env.production
 ````
+
+`
