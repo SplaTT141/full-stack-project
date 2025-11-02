@@ -3,107 +3,155 @@ import { LoginRequired } from "../../components/LoginRequired";
 import { useContext, useState } from "react";
 import { UserContext } from "../../context/user/UserContext";
 import { useNavigate } from "react-router-dom";
-import { serviceNameIsInvalid, serviceDurationIsInvalid, servicePriceIsInvalid } from "../../lib/validation";
+import {
+  serviceNameIsInvalid,
+  serviceDurationIsInvalid,
+  servicePriceIsInvalid
+} from "../../lib/validation";
 
 export function AdminAddService() {
-    const {isLoggedIn} = useContext(UserContext);
+  const { isLoggedIn } = useContext(UserContext);
 
-    const [service, setService] = useState('');
-    const [serviceError, setServiceError] = useState('');
+  const [service, setService] = useState('');
+  const [serviceError, setServiceError] = useState('');
 
-    const [duration, setDuration] = useState(0);
-    const [durationError, setDurationError] = useState('');
+  const [duration, setDuration] = useState(0);
+  const [durationError, setDurationError] = useState('');
 
-    const [price, setPrice] = useState(0);
-    const [priceError, setPriceError] = useState('');
+  const [price, setPrice] = useState(0);
+  const [priceError, setPriceError] = useState('');
 
-    const [error, setError] = ('');
+  const [imagePath, setImagePath] = useState('default.png');
 
-    const navigate = useNavigate();
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
 
-    function handleSubmit(e) {
-        e.preventDefault();
+  function handleSubmit(e) {
+    e.preventDefault();
 
-        setServiceError('');
-        setDurationError('');
-        setPriceError('');
+    setServiceError('');
+    setDurationError('');
+    setPriceError('');
 
-        let hasError = false
+    let hasError = false;
 
-        if (serviceNameIsInvalid(service)) {
-            setServiceError(serviceNameIsInvalid(service));
-            hasError = true;
-        }
-
-        if (serviceDurationIsInvalid(duration)) {
-            setDurationError(serviceDurationIsInvalid(duration));
-            hasError = true;
-        }
-
-        if (servicePriceIsInvalid(price)) {
-            setPriceError(servicePriceIsInvalid(price));
-            hasError = true;
-        }
-
-        if (hasError) return;
-
-        fetch('http://localhost:5000/admin/services', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                service, duration, price
-            })
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.status === 'error') {
-                    setError(data.message);
-                } else {
-                    navigate('/admin/services')
-                }
-            })
-            .catch(error => console.log(error)) 
+    if (serviceNameIsInvalid(service)) {
+      setServiceError(serviceNameIsInvalid(service));
+      hasError = true;
     }
 
-    return (
+    if (serviceDurationIsInvalid(duration)) {
+      setDurationError(serviceDurationIsInvalid(duration));
+      hasError = true;
+    }
+
+    if (servicePriceIsInvalid(price)) {
+      setPriceError(servicePriceIsInvalid(price));
+      hasError = true;
+    }
+
+    if (hasError) return;
+
+    fetch('http://localhost:5000/admin/services', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+      body: JSON.stringify({
+        service,
+        duration,
+        price,
+        imagePath,
+      })
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.status === 'error') {
+          setError(data.message);
+        } else {
+          navigate('/admin/services');
+        }
+      })
+      .catch(error => console.log(error))
+  }
+
+  function handleImageChange(e) {
+    const file = e.target.files[0];
+    if (file) {
+      setImagePath(`${file.name}`);
+    } else {
+      setImagePath('default.png');
+    }
+  }
+
+  return (
     <div className="container-fluid">
-        <div className="row">
-        {
-        isLoggedIn
-        ?
-        <div className="d-flex flex-wrap">
+      <div className="row">
+        {isLoggedIn ? (
+          <div className="d-flex flex-wrap">
             <Sidebar />
             <div className="bd-example-snippet bd-code-snippet w-md-75 w-lg-50 col-xxl-3 col-xl-4 col-lg-5 col-md-6 col-sm-8">
-                <div className="bd-example m-0 border-0">
-                    <h1>Pridėti paslaugą</h1>
-                    <form onSubmit={handleSubmit}>
-                        <div className="mb-3 fw-bold" style={{color: 'red'}}>{error}</div>
-                        <div className="mb-3">
-                            <label htmlFor="service" className="form-label">Paslaugos pavadinimas</label>
-                            <input onChange={e => setService(e.target.value)} type="text" id="service" className="form-control" required />
-                            <div style={{color: 'red'}}>{serviceError}</div>
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="duration" className="form-label">Trukmė minutėm</label>
-                            <input onChange={e => setDuration(e.target.value)} type="number" className="form-control" id="duration" required />
-                            <div style={{color: 'red'}}>{durationError}</div>
-                        </div>
-                        <div className="mb-3">
-                            <label htmlFor="price" className="form-label">Kaina €</label>
-                            <input onChange={e => setPrice(e.target.value)} type="number" id="price" className="form-control" required />
-                            <div style={{color: 'red'}}>{priceError}</div>
-                        </div>
-                        <button type="submit" className="btn btn-primary mt-3">Patvirtinti</button>
-                    </form>
-                </div>
+              <div className="bd-example m-0 border-0">
+                <h1>Pridėti paslaugą</h1>
+                <form onSubmit={handleSubmit}>
+                  <div className="mb-3 fw-bold" style={{color: 'red'}}>{error}</div>
+
+                  <div className="mb-3">
+                    <label htmlFor="service" className="form-label">Paslaugos pavadinimas</label>
+                    <input
+                      onChange={e => setService(e.target.value)}
+                      type="text"
+                      id="service"
+                      className="form-control"
+                      required
+                    />
+                    <div style={{color: 'red'}}>{serviceError}</div>
+                  </div>
+
+                  <div className="mb-3">
+                    <label htmlFor="duration" className="form-label">Trukmė minutėm</label>
+                    <input
+                      onChange={e => setDuration(Number(e.target.value))}
+                      type="number"
+                      className="form-control"
+                      id="duration"
+                      required
+                    />
+                    <div style={{color: 'red'}}>{durationError}</div>
+                  </div>
+
+                  <div className="mb-3">
+                    <label htmlFor="price" className="form-label">Kaina €</label>
+                    <input
+                      onChange={e => setPrice(Number(e.target.value))}
+                      type="number"
+                      id="price"
+                      className="form-control"
+                      required
+                    />
+                    <div style={{color: 'red'}}>{priceError}</div>
+                  </div>
+
+                  <div className="mb-3">
+                    <label htmlFor="image" className="form-label">Nuotrauka (neprivaloma)</label>
+                    <input
+                      onChange={handleImageChange}
+                      type="file"
+                      id="image"
+                      className="form-control"
+                      accept="image/*"
+                    />
+                  </div>
+                  <button type="submit" className="btn btn-primary mt-3">Patvirtinti</button>
+                </form>
+              </div>
             </div>
-        </div>
-        :
-        <LoginRequired />
-        }
-        </div>
+          </div>
+        ) : (
+          <LoginRequired />
+        )}
+      </div>
     </div>
-    )
+  )
 }
