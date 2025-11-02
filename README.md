@@ -29,14 +29,13 @@ Git - atsisiunčiame ir įstaliuojame.
 
 ```
 https://git-scm.com
+```
 
 Xampp - atsisiunčiame ir įsirašome.
 
 ```
-
 https://www.apachefriends.org/download.html
-
-````
+```
 
 ### 🏃 Jeigu norime pasileisti local server:
 
@@ -45,6 +44,8 @@ Would like to run this project locally? Open terminal and follow these steps:
 1. Atsisiųsti kloną iš nuorodos:
    ```sh
        https://github.com/PovDai/55-grupe-egzas.git
+   ```
+
 ````
 
 2. Client, Server ir pagrindinėje dalyje instaliuoti:
@@ -100,3 +101,4 @@ Would like to run this project locally? Open terminal and follow these steps:
    .env.development
 
    .env.production
+````
