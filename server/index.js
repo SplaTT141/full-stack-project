@@ -12,6 +12,8 @@ import { deleteService } from './api/deleteService.js';
 import { postService } from './api/postService.js';
 import { putService } from './api/putService.js';
 import { isAdmin } from './middleware/isAdmin.js';
+import { postReservation } from './api/postReservation.js';
+import { getReservations } from './api/getReservations.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -30,10 +32,12 @@ app.get('/', (req, res) => {
 });
 app.get('/login', getLogin);
 app.get('/services', getServices);
+app.get('/reservation', isAdmin, getReservations);
 
 app.post('/register', postRegister);
 app.post('/login', postLogin);
 app.post('/logout', postLogout);
+app.post('/reservation', postReservation);
 app.post('/admin/services', isAdmin, postService);
 
 app.put('/admin/services/edit', isAdmin, putService);
