@@ -21,7 +21,7 @@ export function AdminEditService() {
 
     useEffect(() => {
         fetch('http://localhost:5000/services', {
-            method: 'GET'
+            method: 'GET',
         })
             .then(res => res.json())
             .then(data => {
@@ -69,6 +69,7 @@ export function AdminEditService() {
 
             fetch(`http://localhost:5000/admin/services/edit`, {
                 method: 'PUT',
+                credentials: 'include',
                 headers: {
                     "Content-Type": "application/json"
                 },
