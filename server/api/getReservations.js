@@ -2,7 +2,18 @@ import { db } from "../db.js";
 
 export async function getReservations(req, res) {
     try {
-        const sql = `SELECT * FROM reservation`;
+        const sql = `
+            SELECT 
+                reservation.id,
+                reservation.name,
+                reservation.surname,
+                reservation.email,
+                reservation.phone,
+                services.service AS service_name,
+                reservation.date,
+                reservation.time
+            FROM reservation
+            JOIN services ON reservation.service = services.id`;
         const [reservations] = await db.execute(sql);
 
         return res.status(200).json({ status: 'success', reservations })

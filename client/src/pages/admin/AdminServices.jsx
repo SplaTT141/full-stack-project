@@ -86,7 +86,7 @@ export function AdminServices() {
                                                     <td>{service.duration} min</td>
                                                     <td>{service.price} €</td>
                                                     <td>
-                                                        <Link to={`edit/${service.id}`} className="btn btn-warning me-2">Redaguoti</Link>
+                                                        <Link to={`edit/${service.id}`} className="btn btn-warning me-2 mb-1">Redaguoti</Link>
                                                         <button onClick={() => handleClickDeleteService(service.id)} className="btn btn-danger">Panaikinti</button>
                                                     </td>
                                                 </tr>

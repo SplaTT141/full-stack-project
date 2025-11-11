@@ -12,7 +12,8 @@ export function Reservation() {
         const [email, setEmail] = useState('');
         const [phone, setPhone] = useState('');
         const [service, setService] = useState('');
-        const [dateTime, setDateTime] = useState('');
+        const [date, setDate] = useState('');
+        const [time, setTime] = useState('');
 
         const [error, setError] = useState('');
         const [success, setSuccess] = useState(false);
@@ -48,7 +49,8 @@ export function Reservation() {
                     email,
                     phone,
                     service,
-                    dateTime,
+                    date,
+                    time
                 })
             })
                 .then(res => res.json())
@@ -101,8 +103,12 @@ export function Reservation() {
                         </select>
                     </div>
                     <div className="mb-3">
-                        <label className="form-label">Pasirinkite datą ir laiką</label>
-                        <input onChange={e => setDateTime(e.target.value)} type="datetime-local" className="form-control" required />
+                        <label className="form-label">Pasirinkite datą </label>
+                        <input onChange={e => setDate(e.target.value)} type="date" className="form-control" required />
+                    </div>
+                    <div className="mb-3">
+                        <label className="form-label">Pasirinkite laiką</label>
+                        <input onChange={e => setTime(e.target.value)} type="time" className="form-control" required />
                     </div>
                     {success &&
                         (

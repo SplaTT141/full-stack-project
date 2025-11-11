@@ -14,6 +14,7 @@ import { putService } from './api/putService.js';
 import { isAdmin } from './middleware/isAdmin.js';
 import { postReservation } from './api/postReservation.js';
 import { getReservations } from './api/getReservations.js';
+import { deleteReservation } from './api/deleteReservation.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -43,6 +44,7 @@ app.post('/admin/services', isAdmin, postService);
 app.put('/admin/services/edit', isAdmin, putService);
 
 app.delete('/admin/services/:id', isAdmin, deleteService);
+app.delete('/admin/reservation/:id', deleteReservation);
 
 app.get('*error', (req, res) => {
     return res.json({

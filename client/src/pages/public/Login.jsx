@@ -52,7 +52,7 @@ export function Login() {
             .then(data => {
                 if (data.status === 'success') {
                     login(data.user.email, data.user.id);
-                    navigate('/');
+                    setTimeout(() => navigate('/'), 0);
                 } else {
                     setError(data.message)
                 }
