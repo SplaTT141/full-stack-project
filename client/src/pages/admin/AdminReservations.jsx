@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../context/user/UserContext";
 import { LoginRequired } from "../../components/LoginRequired";
 import { Sidebar } from "../../components/Sidebar"
+import { Link } from "react-router-dom";
 
 export function AdminReservations() {
     const {isLoggedIn} = useContext(UserContext);
@@ -81,7 +82,7 @@ export function AdminReservations() {
                                     <td>{reservation.date.slice(0, 10)}</td>
                                     <td>{reservation.time}</td>
                                     <td>
-                                        <button className="btn btn-warning mb-1">Redaguoti</button>
+                                        <Link to={`/admin/reservation/edit/${reservation.id}`} className="btn btn-warning me-2 mb-1">Redaguoti</Link>
                                         <button onClick={() => handleClickDelete(reservation.id)} className="btn btn-danger">Ištrinti</button>
                                     </td>
                                 </tr>
