@@ -31,7 +31,7 @@ app.use(userData);
 app.get('/', (req, res) => {
     res.send("It's alive!");
 });
-app.get('/login', getLogin);
+app.get('/login', isAdmin, getLogin);
 app.get('/services', getServices);
 app.get('/reservation', isAdmin, getReservations);
 

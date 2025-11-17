@@ -57,9 +57,9 @@ export async function postLogin(req, res) {
                 status: 'success',
                 message: 'Prisijungta sėkmingai',
                 user: {
+                    id: userData.id,
                     username: userData.username,
                     email: userData.email,
-                    id: userData.id,
                 }
             });
         } else {

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext} from "react";
 import { UserContext } from "../../context/user/UserContext";
 import { LoginRequired } from "../../components/LoginRequired";
 import { Sidebar } from "../../components/Sidebar";
@@ -9,7 +9,7 @@ export function AdminInfo() {
     return (
         <div className="container-fluid">
             {
-              isLoggedIn 
+              isLoggedIn
                 ? 
                     <div className="d-flex flex-wrap">
                         <Sidebar />

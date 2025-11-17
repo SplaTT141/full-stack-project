@@ -51,7 +51,7 @@ export function Login() {
             .then(res => res.json())
             .then(data => {
                 if (data.status === 'success') {
-                    login(data.user.email, data.user.id);
+                    login(data.user.username, data.user.email, data.user.id);
                     setTimeout(() => navigate('/'), 0);
                 } else {
                     setError(data.message)
