@@ -1,3 +1,3 @@
-export const initialServiceContext = {
-    data: [],
+export const initialServicesContext = {
+    servicesData: [],
 }

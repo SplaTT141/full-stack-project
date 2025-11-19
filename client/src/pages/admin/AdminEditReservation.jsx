@@ -1,5 +1,6 @@
 import { useContext, useEffect, useState } from "react"
 import { UserContext } from "../../context/user/UserContext"
+import { ServicesContext } from "../../context/services/ServicesContext";
 import { Sidebar } from "../../components/Sidebar";
 import { LoginRequired } from "../../components/LoginRequired";
 import { Link, useParams } from "react-router-dom";
@@ -7,6 +8,8 @@ import { Link, useParams } from "react-router-dom";
 export function AdminEditReservation() {
     const { id } = useParams(); 
     const { isLoggedIn } = useContext(UserContext);
+    const { servicesData } = useContext(ServicesContext);
+    console.log(servicesData);
 
     const [reservationData, setReservationData] = useState([]);
     

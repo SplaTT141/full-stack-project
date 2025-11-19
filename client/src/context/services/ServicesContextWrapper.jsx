@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { ServiceContext } from './ServiceContext';
-import { initialServiceContext } from "./initialServicesContext";
+import { ServicesContext } from './ServicesContext';
+import { initialServicesContext } from "./initialServicesContext";
 
-export function ServiceContextWrapper(props) {
-    const [servicesData, setServicesData] = useState(initialServiceContext.data);
+export function ServicesContextWrapper(props) {
+    const [servicesData, setServicesData] = useState(initialServicesContext.data);
 
     useEffect(() => {
         fetch('http://localhost:5000/services', {
@@ -23,8 +23,8 @@ export function ServiceContextWrapper(props) {
     }
 
     return (
-        <ServiceContext.Provider value={values}>
+        <ServicesContext.Provider value={values}>
             {props.children}
-        </ServiceContext.Provider>
+        </ServicesContext.Provider>
     )
 }
