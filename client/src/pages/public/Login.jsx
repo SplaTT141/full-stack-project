@@ -52,7 +52,7 @@ export function Login() {
             .then(data => {
                 if (data.status === 'success') {
                     login(data.user.username, data.user.email, data.user.id);
-                    setTimeout(() => navigate('/'), 0);
+                    navigate('/');
                 } else {
                     setError(data.message)
                 }
@@ -79,7 +79,7 @@ export function Login() {
                                 <div className="mb-3 fw-bold text-danger">{error}</div>
                                 <div className="d-flex flex-row align-items-center mb-4">
                                     <div className="form-outline flex-fill">
-                                        <input onChange={e=> setUsernameOrEmail(e.target.value)} type="text" id="username_or_email"
+                                        <input onChange={e=> setUsernameOrEmail(e.target.value)} value={usernameOrEmail} type="text" id="username_or_email"
                                             className={"form-control" + (usernameOrEmailError ? ' is-invalid' : '')} />
                                         <label className="form-label" htmlFor="username_or_email">Vartotojo vardas arba el. paštas</label>
                                         <div className="text-danger">{usernameOrEmailError}</div>
@@ -87,7 +87,7 @@ export function Login() {
                                 </div>
                                 <div className="d-flex flex-row align-items-center mb-4">
                                     <div className="form-outline flex-fill">
-                                        <input onChange={e=> setPassword(e.target.value)} type="password" id="password"
+                                        <input onChange={e=> setPassword(e.target.value)} value={password} type="password" id="password"
                                             className={"form-control" + (passwordError ? ' is-invalid': '')} />
                                         <label className="form-label" htmlFor="password">Slaptažodis</label>
                                         <div className="text-danger">{passwordError}</div>

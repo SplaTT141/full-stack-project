@@ -107,6 +107,7 @@ export function Register() {
                                     <div className="form-outline flex-fill">
                                         <input
                                             onChange={e => setUsername(e.target.value)}
+                                            value={username}
                                             type="text"
                                             id="username"
                                             className={"form-control" + (usernameError ? ' is-invalid' : '')}
@@ -119,6 +120,7 @@ export function Register() {
                                     <div className="form-outline flex-fill">
                                         <input
                                             onChange={e => setEmail(e.target.value)}
+                                            value={email}
                                             type="email"
                                             id="email"
                                             className={"form-control" + (emailError ? ' is-invalid' : '')} 
@@ -131,6 +133,7 @@ export function Register() {
                                     <div className="form-outline flex-fill">
                                         <input
                                             onChange={e => setPassword(e.target.value)}
+                                            value={password}
                                             type="password"
                                             id="password"
                                             className={"form-control" + (passwordError ? ' is-invalid' : '')} 
@@ -143,6 +146,7 @@ export function Register() {
                                     <div className="form-outline flex-fill">
                                         <input  
                                             onChange={e => setPasswordRepeat(e.target.value)}
+                                            value={passwordRepeat}
                                             type="password"
                                             id="password_confirm"
                                             className={"form-control" + (passwordRepeatError ? ' is-invalid' : '')} 
@@ -154,9 +158,9 @@ export function Register() {
                                 <div className="form-check text-body d-flex justify-content-start">
                                     <input 
                                         onChange={e => setTos(e.target.checked)}
+                                        value="" 
                                         className={"form-check-input me-2" + (tosError ? ' is-invalid' : '')} 
                                         type="checkbox" 
-                                        value="" 
                                         id="checkbox"
                                     />
                                     <label className="form-check-label" htmlFor="checkbox">Sutinku su vartotojo sąlygomis</label>

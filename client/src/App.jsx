@@ -17,11 +17,13 @@ import { AdminReservations } from "./pages/admin/AdminReservations";
 import { AdminAddService } from "./pages/admin/AdminAddService";
 import { AdminEditService } from "./pages/admin/AdminEditService";
 import { AdminEditReservation } from "./pages/admin/AdminEditReservation";
+import { ServiceContextWrapper } from "./context/services/ServiceContextWrapper";
 
 function App() {
 
   return (
     <UserContextWrapper>
+      <ServiceContextWrapper>
       <BrowserRouter>
         <Header />
         <Routes>
@@ -44,6 +46,7 @@ function App() {
         </Routes>
         <Footer />
       </BrowserRouter>
+      </ServiceContextWrapper>
     </UserContextWrapper>
   )
 }
