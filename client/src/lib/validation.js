@@ -192,3 +192,106 @@ export function servicePriceIsInvalid(price) {
 
     return '';
 }
+
+export function nameIsInvalid(name) {
+    if (!name) {
+        return `Vardas yra privalomas`
+    }
+
+    if (typeof name !== 'string') {
+        return `Vardas turi būti tekstas`;
+    }
+
+    if (name.length < 3) {
+        return `Vardą turi sudaryti bent 3 simboliai`;
+    }
+
+    if (name.length > 20) {
+        return `Vardą turi sudaryti ne daugiau 20 simbolių`;
+    }
+
+    const validSymbols = 'qwertyuiopasdfghjklzxcvbnmąčęėįšųūĄČĘĖĮŠŲŪ9QWERTYUIOPASDFGHJKLZXCVBNM0123456789 ';
+    const foundInvalidSymbols = [];
+
+    for (const s of name) {
+        if (!validSymbols.includes(s)) {
+            foundInvalidSymbols.push(s);
+        }
+    }
+
+    if (foundInvalidSymbols.length) {
+        return `Varde yra neleistini simboliai: ${foundInvalidSymbols.join(', ')}`
+    }
+
+    return '';
+}
+
+export function surnameIsInvalid(surname) {
+    if (!surname) {
+        return `Pavardė yra privalomas`
+    }
+
+    if (typeof surname !== 'string') {
+        return `Pavardė turi būti tekstas`;
+    }
+
+    if (surname.length < 2) {
+        return `Pavardę turi sudaryti bent 2 simboliai`;
+    }
+
+    if (surname.length > 40) {
+        return `Pavardę turi sudaryti ne daugiau 40 simbolių`;
+    }
+
+    const validSymbols = 'qwertyuiopasdfghjklzxcvbnmąčęėįšųūĄČĘĖĮŠŲŪ9QWERTYUIOPASDFGHJKLZXCVBNM0123456789 ';
+    const foundInvalidSymbols = [];
+
+    for (const s of surname) {
+        if (!validSymbols.includes(s)) {
+            foundInvalidSymbols.push(s);
+        }
+    }
+
+    if (foundInvalidSymbols.length) {
+        return `Pavardėje yra neleistini simboliai: ${foundInvalidSymbols.join(', ')}`
+    }
+
+    return '';
+}
+
+export function phoneIsInvalid(phone) {
+    if (!phone) {
+        return `Telefono numeris yra privalomas`
+    }
+
+    if (typeof phone !== 'string') {
+        return `Telefono numeris turi būti tekstas`;
+    }
+
+    if (phone.length < 9) {
+        return `Telefono numerį turi sudaryti bent 9 simboliai`;
+    }
+
+    if (phone.length > 12) {
+        return `Telefono numerį turi sudaryti ne daugiau 12 simbolių`;
+    }
+
+    if (phone.includes('+') && phone[0] !== '+') {
+        return 'Simbolis + gali būti tik numerio pradžioje';
+    }
+
+    const validSymbols = '+0123456789';
+    const foundInvalidSymbols = [];
+
+    for (const s of phone) {
+        if (!validSymbols.includes(s)) {
+            foundInvalidSymbols.push(s);
+        }
+    }
+
+    if (foundInvalidSymbols.length) {
+        return `Pavardėje yra neleistini simboliai: ${foundInvalidSymbols.join(', ')}`
+    }
+
+    return '';
+}

@@ -15,6 +15,7 @@ import { isAdmin } from './middleware/isAdmin.js';
 import { postReservation } from './api/postReservation.js';
 import { getReservations } from './api/getReservations.js';
 import { deleteReservation } from './api/deleteReservation.js';
+import { putReservation } from './api/putReservation.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -42,6 +43,7 @@ app.post('/reservation', postReservation);
 app.post('/admin/services', isAdmin, postService);
 
 app.put('/admin/services/edit', isAdmin, putService);
+app.put('/admin/reservation/edit', isAdmin, putReservation);
 
 app.delete('/admin/services/:id', isAdmin, deleteService);
 app.delete('/admin/reservation/:id', deleteReservation);
