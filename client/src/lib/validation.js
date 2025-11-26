@@ -129,7 +129,7 @@ export function serviceNameIsInvalid(service) {
         return `Paslaugos pavadinimas turi sudaryti ne daugiau 200 simbolių`;
     }
 
-    const validSymbols = 'qwertyuiopasdfghjklzxcvbnmąčęėįšųūĄČĘĖĮŠŲŪ9QWERTYUIOPASDFGHJKLZXCVBNM0123456789 ';
+    const validSymbols = 'qwertyuiopasdfghjklzxcvbnmąčęėįšųūžĄČĘĖĮŠŲŪŽ9QWERTYUIOPASDFGHJKLZXCVBNM0123456789 ';
     const foundInvalidSymbols = [];
 
     for (const s of service) {
@@ -291,6 +291,25 @@ export function phoneIsInvalid(phone) {
 
     if (foundInvalidSymbols.length) {
         return `Pavardėje yra neleistini simboliai: ${foundInvalidSymbols.join(', ')}`
+    }
+
+    return '';
+}
+
+export function serviceIsInvalid(service) {
+    if (!service || service === 'Paslaugos...') {
+        return 'Turite pasirinkti paslaugą';
+    }
+
+    return '';
+}
+
+export function dateIsInvalid(date) {
+    const todaysDate = new Date();
+    const newDate = new Date(date);
+
+    if (newDate <= todaysDate) {
+        return `Negalima rinktis praėjusio laiko`;
     }
 
     return '';

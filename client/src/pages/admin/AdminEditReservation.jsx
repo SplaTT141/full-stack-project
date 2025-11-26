@@ -53,7 +53,7 @@ export function AdminEditReservation() {
             .then(res => res.json())
             .then(data => {
                 if (data.status === 'success') {
-                    navigate('/admin/reservation');
+                    navigate('/admin/reservations');
                 } else {
                     setError(data.message);
                 }

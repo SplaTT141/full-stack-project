@@ -74,7 +74,7 @@ export function newServiceValidation(data) {
         service: Joi.string()
             .min(5)
             .max(200)
-            .pattern(/^[a-zA-Z0-9ąčęėįšųūĄČĘĖĮŠŲŪ ]+$/)
+            .pattern(/^[a-zA-Z0-9ąčęėįšųūžĄČĘĖĮŠŲŪŽ ]+$/)
             .required()
             .messages({
                 'string.min': 'Paslaugos pavadinimą turi sudaryti bent 5 simboliai',
@@ -119,14 +119,16 @@ export function updateServiceValidation(data) {
                 'any.required': 'ID yra privalomas',
             }),
         service: Joi.string()
+            .normalize()
+            .trim()
             .min(5)
             .max(200)
-            .pattern(/^[a-zA-Z0-9ąčęėįšųūĄČĘĖĮŠŲŪ ]+$/)
+            .pattern(/^[a-zA-Z0-9ąčęėįšųūžĄČĘĖĮŠŲŪŽ ]+$/)
             .required()
             .messages({
                 'string.min': 'Paslaugos pavadinimą turi sudaryti bent 5 simboliai',
                 'string.max': 'Paslaugos pavadinimą turi sudaryti ne daugiau 200 simbolių',
-                'string.pattern.base': 'Paslaugos pavadinimas gali turėti tik raides ir skaičius',
+                'string.pattern.base': 'Paslaugos pavadinimas gali turėti tik raides, skaičius ir tarpelius',
                 'any.required': 'Paslaugos pavadinimas yra privalomas',
             }),
         duration: Joi.number()
