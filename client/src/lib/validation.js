@@ -210,7 +210,7 @@ export function nameIsInvalid(name) {
         return `Vardą turi sudaryti ne daugiau 20 simbolių`;
     }
 
-    const validSymbols = 'qwertyuiopasdfghjklzxcvbnmąčęėįšųūĄČĘĖĮŠŲŪ9QWERTYUIOPASDFGHJKLZXCVBNM0123456789 ';
+    const validSymbols = 'qwertyuiopasdfghjklzxcvbnmąčęėįšųūĄČĘĖĮŠŲŪ9QWERTYUIOPASDFGHJKLZXCVBNM ';
     const foundInvalidSymbols = [];
 
     for (const s of name) {
@@ -243,7 +243,7 @@ export function surnameIsInvalid(surname) {
         return `Pavardę turi sudaryti ne daugiau 40 simbolių`;
     }
 
-    const validSymbols = 'qwertyuiopasdfghjklzxcvbnmąčęėįšųūĄČĘĖĮŠŲŪ9QWERTYUIOPASDFGHJKLZXCVBNM0123456789 ';
+    const validSymbols = 'qwertyuiopasdfghjklzxcvbnmąčęėįšųūĄČĘĖĮŠŲŪ9QWERTYUIOPASDFGHJKLZXCVBNM ';
     const foundInvalidSymbols = [];
 
     for (const s of surname) {
@@ -310,6 +310,18 @@ export function dateIsInvalid(date) {
 
     if (newDate <= todaysDate) {
         return `Negalima rinktis praėjusio laiko`;
+    }
+
+    return '';
+}
+
+export function timeIsInvalid(time) {
+    const newTime = +time.slice(0, 2);
+    const workStartsAt = 8;
+    const workEndsAt = 17;
+
+    if (newTime < workStartsAt || newTime >= workEndsAt) {
+        return `Darbo laikas yra nuo 08:00 iki 17:00`;
     }
 
     return '';

@@ -4,14 +4,20 @@ import { ServicesContext } from "../../context/services/ServicesContext";
 import { Sidebar } from "../../components/Sidebar";
 import { LoginRequired } from "../../components/LoginRequired";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { nameIsInvalid, surnameIsInvalid, emailIsInvalid, phoneIsInvalid, dateIsInvalid, timeIsInvalid } from "../../lib/validation";
 
 export function AdminEditReservation() {
     const { id } = useParams(); 
     const { isLoggedIn } = useContext(UserContext);
     const { servicesData } = useContext(ServicesContext);
-
     const [reservationData, setReservationData] = useState([]);
-    
+
+    const [nameError, setNameError] = useState('');
+    const [surnameError, setSurnameError] = useState('');
+    const [emailError, setEmailError] = useState('');
+    const [phoneError, setPhoneError] = useState('');
+    const [dateError, setDateError] = useState('');
+    const [timeError, setTimeError] = useState('');
     const [error, setError] = useState('');
 
     const navigate = useNavigate();
@@ -39,6 +45,53 @@ export function AdminEditReservation() {
 
     function handleSubmit(e) {
         e.preventDefault();
+
+        setNameError('');
+        setSurnameError('');
+        setEmailError('');
+        setPhoneError('');
+        setDateError('');
+        setTimeError('');
+
+        let hasError = false;
+
+        if (nameIsInvalid(reservationData.name)) {
+            setNameError(nameIsInvalid(reservationData.name));
+
+            hasError = true;
+        }
+        
+        if (surnameIsInvalid(reservationData.surname)) {
+            setSurnameError(surnameIsInvalid(reservationData.surname));
+
+            hasError = true;
+        }
+
+        if (emailIsInvalid(reservationData.email)) {
+            setEmailError(emailIsInvalid(reservationData.email));
+
+            hasError = true;
+        }
+
+        if (phoneIsInvalid(reservationData.phone)) {
+            setPhoneError(phoneIsInvalid(reservationData.phone))
+            
+            hasError = true;
+        }
+
+        if (dateIsInvalid(reservationData.date)) {
+            setDateError(dateIsInvalid(reservationData.date));
+
+            hasError = true;
+        }
+
+        if (timeIsInvalid(reservationData.time)) {
+            setTimeError(timeIsInvalid(reservationData.time));
+
+            hasError = true;
+        }
+
+        if (hasError) return;
 
         fetch('http://localhost:5000/admin/reservation/edit', {
             method: 'PUT',
@@ -76,13 +129,45 @@ export function AdminEditReservation() {
                                 <span className="text-primary"> {reservationData.id}</span>
                             </div>
                             <label htmlFor="name" className="form-label">Vardas</label>
-                            <input type="text" onChange={e => setReservationData({...reservationData, name:e.target.value})} id="name" className="form-control" value={reservationData.name ?? ''} required />
+                            <input 
+                                type="text"
+                                onChange={e => setReservationData({...reservationData, name:e.target.value})}
+                                id="name"
+                                className={"form-control" + (nameError ? ' is-invalid' : '')}
+                                value={reservationData.name ?? ''}
+                                required 
+                            />
+                            <div style={{color: 'red'}}>{nameError}</div>
                             <label htmlFor="surname" className="form-label">Pavardė</label>
-                            <input type="text" onChange={e => setReservationData({...reservationData, surname:e.target.value})} id="surname" className="form-control" value={reservationData.surname ?? ''} required />
+                            <input 
+                                type="text"
+                                onChange={e => setReservationData({...reservationData, surname:e.target.value})}
+                                id="surname"
+                                className={"form-control" + (surnameError ? ' is-invalid' : '')}
+                                value={reservationData.surname ?? ''}
+                                required
+                            />
+                            <div style={{color: 'red'}}>{surnameError}</div>
                             <label htmlFor="email" className="form-label">El. paštas</label>
-                            <input type="email" onChange={e => setReservationData({...reservationData, email:e.target.value})} id="email" className="form-control" value={reservationData.email ?? ''} required />
+                            <input
+                                type="email"
+                                onChange={e => setReservationData({...reservationData, email:e.target.value})}
+                                id="email"
+                                className={"form-control" + (emailError ? ' is-invalid' : '')}
+                                value={reservationData.email ?? ''}
+                                required
+                            />
+                            <div style={{color: 'red'}}>{emailError}</div>
                             <label htmlFor="text" className="form-label">Telefono numeris</label>
-                            <input type="text" onChange={e => setReservationData({...reservationData, phone:e.target.value})} id="phone" className="form-control" value={reservationData.phone ?? ''} required />
+                            <input 
+                                type="text"
+                                onChange={e => setReservationData({...reservationData, phone:e.target.value})}
+                                id="phone"
+                                className={"form-control" + (phoneError ? ' is-invalid' : '')}
+                                value={reservationData.phone ?? ''}
+                                required
+                            />
+                            <div style={{color: 'red'}}>{phoneError}</div>
                             <label htmlFor="text" className="form-label">Paslauga</label>
                             <select name="service" onChange={e => setReservationData({...reservationData, service_name:e.target.value})} id="service" className="form-select">
                                 <option value="">{reservationData.service_name}</option>
@@ -92,9 +177,25 @@ export function AdminEditReservation() {
                                 }
                             </select>
                             <label htmlFor="date" className="form-label">Data</label>
-                            <input type="date" onChange={e => setReservationData({...reservationData, date:e.target.value})} id="date" className="form-control" value={reservationData.date?.slice(0, 10) ?? ''} required />
+                            <input 
+                                type="date"
+                                onChange={e => setReservationData({...reservationData, date:e.target.value})}
+                                id="date"
+                                className={"form-control" + (dateError ? ' is-invalid' : '')}
+                                value={reservationData.date?.slice(0, 10) ?? ''}
+                                required
+                            />
+                            <div style={{color: 'red'}}>{dateError}</div>
                             <label htmlFor="time" className="form-label">Laikas</label>
-                            <input type="time" onChange={e => setReservationData({...reservationData, time:e.target.value})} id="time" className="form-control" value={reservationData.time ?? ''} required />
+                            <input 
+                                type="time"
+                                onChange={e => setReservationData({...reservationData, time:e.target.value})}
+                                id="time"
+                                className={"form-control" + (timeError ? ' is-invalid' : '')}
+                                value={reservationData.time ?? ''}
+                                required
+                            />
+                            <div style={{color: 'red'}}>{timeError}</div>
                             <button type="submit" className="btn btn-primary mt-4">Patvirtinti</button>
                             <Link to={'/admin/reservations'} className="btn btn-danger mt-4 ms-2">Atšaukti</Link>
                         </form>
