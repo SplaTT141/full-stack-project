@@ -33,8 +33,8 @@ export function Services() {
             const matchesService = service.service.toLowerCase().includes(filter.service.toLowerCase().trim())
             const matchesDurationFrom = filter.durationFrom === '' || service.duration >= +filter.durationFrom;
             const matchesDurationTo = filter.durationTo === '' || service.duration <= +filter.durationTo;
-            const matchesPriceFrom = filter.priceFrom === '' || service.price >= filter.priceFrom;
-            const matchesPriceTo = filter.priceTo === '' || service.price <= filter.priceTo;
+            const matchesPriceFrom = filter.priceFrom === '' || service.price >= +filter.priceFrom;
+            const matchesPriceTo = filter.priceTo === '' || service.price <= +filter.priceTo;
 
             return matchesService && matchesDurationFrom && matchesDurationTo && matchesPriceFrom && matchesPriceTo;
         }))
@@ -58,14 +58,14 @@ export function Services() {
                             <input 
                                 onChange={e =>setFilter(prev => ({...prev, durationFrom: e.target.value}))} 
                                 type="number" 
-                                id="duration_filter" 
+                                id="durationFrom_filter" 
                                 className="form-control mb-2" 
                                 placeholder="Trukmė nuo"
                             />
                             <input 
                                 onChange={e =>setFilter(prev => ({...prev, durationTo: e.target.value}))} 
                                 type="number" 
-                                id="duration_filter" 
+                                id="durationTo_filter" 
                                 className="form-control mb-2" 
                                 placeholder="Trukmė iki"
                             />
@@ -74,14 +74,14 @@ export function Services() {
                             <input 
                                 onChange={e => setFilter(prev => ({...prev, priceFrom: e.target.value}) )} 
                                 type="number" 
-                                id="price_filter" 
+                                id="priceFrom_filter" 
                                 className="form-control mb-2" 
                                 placeholder="Kaina nuo"
                             />
                             <input 
                                 onChange={e => setFilter(prev => ({...prev, priceTo: e.target.value}) )} 
                                 type="number" 
-                                id="price_filter" 
+                                id="priceTo_filter" 
                                 className="form-control mb-2" 
                                 placeholder="Kaina iki"
                             />
