@@ -43,7 +43,7 @@ app.post('/reservation', postReservation);
 app.post('/admin/services', isAdmin, postService);
 
 app.put('/admin/services/edit', isAdmin, putService);
-app.put('/admin/reservation/edit', putReservation);
+app.put('/admin/reservation/edit', isAdmin, putReservation);
 
 app.delete('/admin/services/:id', isAdmin, deleteService);
 app.delete('/admin/reservation/:id', deleteReservation);
