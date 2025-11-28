@@ -50,7 +50,6 @@ export function Services() {
                         <input 
                             onChange={e =>setFilter(prev => ({...prev, service: e.target.value}))} 
                             type="text" 
-                            id="name_filter" 
                             className="form-control mb-2" 
                             placeholder="Raskite pagal paslaugos pavadinimą"
                         />
@@ -58,14 +57,12 @@ export function Services() {
                             <input 
                                 onChange={e =>setFilter(prev => ({...prev, durationFrom: e.target.value}))} 
                                 type="number" 
-                                id="durationFrom_filter" 
                                 className="form-control mb-2" 
                                 placeholder="Trukmė nuo"
                             />
                             <input 
                                 onChange={e =>setFilter(prev => ({...prev, durationTo: e.target.value}))} 
                                 type="number" 
-                                id="durationTo_filter" 
                                 className="form-control mb-2" 
                                 placeholder="Trukmė iki"
                             />
@@ -74,14 +71,12 @@ export function Services() {
                             <input 
                                 onChange={e => setFilter(prev => ({...prev, priceFrom: e.target.value}) )} 
                                 type="number" 
-                                id="priceFrom_filter" 
                                 className="form-control mb-2" 
                                 placeholder="Kaina nuo"
                             />
                             <input 
                                 onChange={e => setFilter(prev => ({...prev, priceTo: e.target.value}) )} 
                                 type="number" 
-                                id="priceTo_filter" 
                                 className="form-control mb-2" 
                                 placeholder="Kaina iki"
                             />

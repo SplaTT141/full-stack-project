@@ -8,6 +8,18 @@ export function AdminReservations() {
     const {isLoggedIn} = useContext(UserContext);
 
     const [reservations, setReservations] = useState([]);
+
+    const [filter, setFilter] = useState({
+        name: '',
+        surname: '',
+        email: '',
+        phone: '',
+        service: '',
+        date: '',
+        time: '',
+    });
+    const [filteredReservations, setFilteredReservations] = useState([]);
+
     const [error, setError] = useState('');
 
     useEffect(() => {
@@ -24,6 +36,33 @@ export function AdminReservations() {
                 }
             })
     }, [])
+
+    useEffect(() => {
+        setFilteredReservations(reservations.filter(reserve => {
+            const matchesName = reserve.name.toLowerCase().includes(filter.name.toLowerCase().trim());
+            const matchesSurname = reserve.surname.toLowerCase().includes(filter.surname.toLowerCase().trim());
+            const matchesEmail = reserve.email.toLowerCase().includes(filter.email.toLowerCase().trim());
+            const matchesPhone = reserve.phone.toLowerCase().includes(filter.phone.trim());
+            const matchesService = reserve.service_name.toLowerCase().includes(filter.service.toLowerCase().trim());
+            const matchesDate = filter.date === '' || reserve.date.slice(0, 10) === filter.date;
+            const matchesTime = filter.time === '' || reserve.time.slice(0, 5) === filter.time;
+
+            return matchesName && matchesSurname && matchesEmail && matchesPhone && matchesService && matchesDate && matchesTime;
+        }
+        ))
+    }, [filter, reservations])
+
+    function handleClickDeleteFilters() {
+        setFilter({
+            name: '',
+            surname: '',
+            email: '',
+            phone: '',
+            service: '',
+            date: '',
+            time: '',
+        })
+    }
 
     async function handleClickDelete(id) {
         const confirmDelete = window.confirm("Ar tikrai norite ištrinti šią rezervaciją?");
@@ -54,6 +93,64 @@ export function AdminReservations() {
                             <h1>Rezervacijos</h1>
                         </div>
                         <div className="mb-3 fw-bold" style={{color: 'red'}}>{error}</div>
+                        <div className="row g-2 mb-2">
+                            <h5>Filtrai</h5>
+                            <div className="col-md-4 col-lg-3">
+                                <input 
+                                    onChange={e => setFilter(prev => ({...prev, name: e.target.value}))}
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="Vardas"
+                                />
+                            </div>
+                            <div className="col-md-4 col-lg-3">
+                                <input 
+                                    onChange={e => setFilter(prev => ({...prev, surname: e.target.value}))}
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="Pavardė"
+                                    />
+                            </div>
+                            <div className="col-md-4 col-lg-3">
+                                <input 
+                                    onChange={e => setFilter(prev => ({...prev, email: e.target.value}))}
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="El. paštas"
+                                    />
+                            </div>
+                            <div className="col-md-4 col-lg-3">
+                                <input 
+                                    onChange={e => setFilter(prev => ({...prev, phone: e.target.value}))}
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="Telefono numeris"
+                                    />
+                            </div>
+                            <div className="col-md-4 col-lg-3">
+                                <input 
+                                    onChange={e => setFilter(prev => ({...prev, service: e.target.value}))}
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="Paslauga" 
+                                    />
+                            </div>
+                            <div className="col-md-4 col-lg-3">
+                                <input 
+                                    onChange={e => setFilter(prev => ({...prev, date: e.target.value}))}
+                                    type="date"
+                                    className="form-control"
+                                    />
+                            </div>
+                            <div className="col-md-4 col-lg-3">
+                                <input 
+                                    onChange={e => setFilter(prev => ({...prev, time: e.target.value}))}
+                                    type="time"
+                                    className="form-control"
+                                />
+                            </div>
+                            <button onClick={handleClickDeleteFilters} className="btn btn-secondary col-md-4 col-lg-3">Panaikinti filtrus</button>
+                        </div>
                         <table className="table table-striped table-hover">
                             <thead>
                                 <tr>
@@ -71,7 +168,7 @@ export function AdminReservations() {
                             <tbody>
                                 {(reservations.length)
                                 ?
-                                reservations.map((reservation, index) => (
+                                filteredReservations.map((reservation, index) => (
                                 <tr key={index}>
                                     <th>{index + 1}</th>
                                     <td>{reservation.name}</td>
@@ -80,10 +177,12 @@ export function AdminReservations() {
                                     <td>{reservation.phone}</td>
                                     <td>{reservation.service_name}</td>
                                     <td>{reservation.date.slice(0, 10)}</td>
-                                    <td>{reservation.time}</td>
+                                    <td>{reservation.time.slice(0, 5)}</td>
                                     <td>
-                                        <Link to={`/admin/reservation/edit/${reservation.id}`} className="btn btn-warning me-2 mb-1">Redaguoti</Link>
-                                        <button onClick={() => handleClickDelete(reservation.id)} className="btn btn-danger">Ištrinti</button>
+                                        <Link to={`/admin/reservation/edit/${reservation.id}`}
+                                            className="btn btn-warning me-2 mb-1">Redaguoti</Link>
+                                        <button onClick={()=> handleClickDelete(reservation.id)} className="btn
+                                            btn-danger">Ištrinti</button>
                                     </td>
                                 </tr>
                                 ))
@@ -100,6 +199,6 @@ export function AdminReservations() {
             :
             <LoginRequired />
             }
-        </div>   
-    )
+        </div>
+        )
 }
