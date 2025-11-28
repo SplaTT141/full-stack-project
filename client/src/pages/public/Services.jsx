@@ -40,6 +40,16 @@ export function Services() {
         }))
     }, [filter, services]);
 
+    function handleClickDeleteFilter() {
+        setFilter({
+            service: '',
+            durationFrom: '',
+            durationTo: '',
+            priceFrom: '',
+            priceTo: '',
+        })
+    }
+
     return ( 
     <div className="container">
         <div className="row">
@@ -49,38 +59,44 @@ export function Services() {
                     <div className="mb-2">
                         <input 
                             onChange={e =>setFilter(prev => ({...prev, service: e.target.value}))} 
+                            value={filter.service}
                             type="text" 
                             className="form-control mb-2" 
                             placeholder="Raskite pagal paslaugos pavadinimą"
-                        />
+                            />
                         <div className="d-flex gap-3">
                             <input 
                                 onChange={e =>setFilter(prev => ({...prev, durationFrom: e.target.value}))} 
+                                value={filter.durationFrom}
                                 type="number" 
                                 className="form-control mb-2" 
                                 placeholder="Trukmė nuo"
-                            />
+                                />
                             <input 
                                 onChange={e =>setFilter(prev => ({...prev, durationTo: e.target.value}))} 
+                                value={filter.durationTo}
                                 type="number" 
                                 className="form-control mb-2" 
                                 placeholder="Trukmė iki"
-                            />
+                                />
                         </div>
                         <div className="d-flex gap-3">
                             <input 
                                 onChange={e => setFilter(prev => ({...prev, priceFrom: e.target.value}) )} 
+                                value={filter.priceFrom}
                                 type="number" 
                                 className="form-control mb-2" 
                                 placeholder="Kaina nuo"
-                            />
+                                />
                             <input 
                                 onChange={e => setFilter(prev => ({...prev, priceTo: e.target.value}) )} 
+                                value={filter.priceTo}
                                 type="number" 
                                 className="form-control mb-2" 
                                 placeholder="Kaina iki"
                             />
                         </div>
+                        <button onClick={handleClickDeleteFilter} className="btn btn-secondary">Panaikinti filtrus</button>
                     </div>
                     <table className="table table-striped table-hover">
                         <thead>

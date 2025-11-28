@@ -98,6 +98,7 @@ export function AdminReservations() {
                             <div className="col-md-4 col-lg-3">
                                 <input 
                                     onChange={e => setFilter(prev => ({...prev, name: e.target.value}))}
+                                    value={filter.name}
                                     type="text"
                                     className="form-control"
                                     placeholder="Vardas"
@@ -106,6 +107,7 @@ export function AdminReservations() {
                             <div className="col-md-4 col-lg-3">
                                 <input 
                                     onChange={e => setFilter(prev => ({...prev, surname: e.target.value}))}
+                                    value={filter.surname}
                                     type="text"
                                     className="form-control"
                                     placeholder="Pavardė"
@@ -114,6 +116,7 @@ export function AdminReservations() {
                             <div className="col-md-4 col-lg-3">
                                 <input 
                                     onChange={e => setFilter(prev => ({...prev, email: e.target.value}))}
+                                    value={filter.email}
                                     type="text"
                                     className="form-control"
                                     placeholder="El. paštas"
@@ -122,6 +125,7 @@ export function AdminReservations() {
                             <div className="col-md-4 col-lg-3">
                                 <input 
                                     onChange={e => setFilter(prev => ({...prev, phone: e.target.value}))}
+                                    value={filter.phone}
                                     type="text"
                                     className="form-control"
                                     placeholder="Telefono numeris"
@@ -130,6 +134,7 @@ export function AdminReservations() {
                             <div className="col-md-4 col-lg-3">
                                 <input 
                                     onChange={e => setFilter(prev => ({...prev, service: e.target.value}))}
+                                    value={filter.service}
                                     type="text"
                                     className="form-control"
                                     placeholder="Paslauga" 
@@ -138,6 +143,7 @@ export function AdminReservations() {
                             <div className="col-md-4 col-lg-3">
                                 <input 
                                     onChange={e => setFilter(prev => ({...prev, date: e.target.value}))}
+                                    value={filter.date}
                                     type="date"
                                     className="form-control"
                                     />
@@ -145,6 +151,7 @@ export function AdminReservations() {
                             <div className="col-md-4 col-lg-3">
                                 <input 
                                     onChange={e => setFilter(prev => ({...prev, time: e.target.value}))}
+                                    value={filter.time}
                                     type="time"
                                     className="form-control"
                                 />
