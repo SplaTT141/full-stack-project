@@ -20,7 +20,7 @@ export function AdminEditService() {
     const [error, setError] = useState('');
 
     useEffect(() => {
-        fetch('http://localhost:5000/services', {
+        fetch(`${import.meta.env.VITE_BACKEND_URL}/services`, {
             method: 'GET',
         })
             .then(res => res.json())
@@ -67,7 +67,7 @@ export function AdminEditService() {
 
             if (hasError) return;
 
-            fetch(`http://localhost:5000/admin/services/edit`, {
+            fetch(`${import.meta.env.VITE_BACKEND_URL}/admin/services/edit`, {
                 method: 'PUT',
                 credentials: 'include',
                 headers: {

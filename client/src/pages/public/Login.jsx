@@ -37,7 +37,7 @@ export function Login() {
 
         if (hasError) return;
 
-        fetch('http://localhost:5000/login', {
+        fetch(`${import.meta.env.VITE_BACKEND_URL}/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

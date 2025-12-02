@@ -33,7 +33,7 @@ export function Reservation() {
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
-    fetch("http://localhost:5000/services", {
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/services`, {
       method: "GET",
     })
       .then((res) => res.json())
@@ -104,7 +104,7 @@ export function Reservation() {
 
     if (hasError) return;
 
-    fetch("http://localhost:5000/reservation", {
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/reservation`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

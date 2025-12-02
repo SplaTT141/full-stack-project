@@ -6,7 +6,7 @@ export function ServicesContextWrapper(props) {
     const [servicesData, setServicesData] = useState(initialServicesContext.data);
 
     useEffect(() => {
-        fetch('http://localhost:5000/services', {
+        fetch(`${import.meta.env.VITE_BACKEND_URL}/services`, {
             method: 'GET',
         })
             .then(res => res.json())

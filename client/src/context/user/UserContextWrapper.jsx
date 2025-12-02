@@ -10,7 +10,7 @@ export function UserContextWrapper(props) {
     const [id, setId] = useState(initialUserContext.id);
 
     useEffect(() => {
-        fetch('http://localhost:5000/login', {
+        fetch(`${import.meta.env.VITE_BACKEND_URL}/login`, {
             method: 'GET',
             credentials: 'include',
         })
@@ -33,7 +33,7 @@ export function UserContextWrapper(props) {
     
     async function logout() {
         try {
-              const response = await fetch('http://localhost:5000/logout', {
+              const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/logout`, {
                 method: 'POST',
                 credentials: 'include',
             })

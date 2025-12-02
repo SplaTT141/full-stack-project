@@ -23,7 +23,7 @@ export function AdminReservations() {
     const [error, setError] = useState('');
 
     useEffect(() => {
-        fetch('http://localhost:5000/reservation', {
+        fetch(`${import.meta.env.VITE_BACKEND_URL}/reservation`, {
             method: 'GET', 
             credentials: 'include'
         })
@@ -69,7 +69,7 @@ export function AdminReservations() {
         if (!confirmDelete) return;
 
         try {
-            await fetch(`http://localhost:5000/admin/reservation/${id}`, {
+            await fetch(`${import.meta.env.VITE_BACKEND_URL}/admin/reservation/${id}`, {
                 method: 'DELETE',  
                 credentials: 'include',
             })

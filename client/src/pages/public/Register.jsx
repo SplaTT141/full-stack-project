@@ -64,7 +64,7 @@ export function Register() {
         
         if (hasError) return;
         
-        fetch('http://localhost:5000/register', {
+        fetch(`${import.meta.env.VITE_BACKEND_URL}/register`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

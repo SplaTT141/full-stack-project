@@ -14,7 +14,7 @@ export function Services() {
     const [error, setError] = useState('');
     
     useEffect(() => {
-        fetch('http://localhost:5000/services', {
+        fetch(`${import.meta.env.VITE_BACKEND_URL}/services`, {
             method: 'GET'
         })
         .then(res => res.json())

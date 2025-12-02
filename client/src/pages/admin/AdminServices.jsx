@@ -12,7 +12,7 @@ export function AdminServices() {
         const [error, setError] = useState('');
     
         useEffect(() => {
-            fetch('http://localhost:5000/services', {
+            fetch(`${import.meta.env.VITE_BACKEND_URL}/services`, {
                 method: 'GET',
                 credentials:'include',
             })
@@ -32,7 +32,7 @@ export function AdminServices() {
             if (!confirmDelete) return;
 
             try {
-                await fetch(`http://localhost:5000/admin/services/${id}`, {
+                await fetch(`${import.meta.env.VITE_BACKEND_URL}/admin/services/${id}`, {
                     method: 'DELETE',
                     credentials: "include",
                 })

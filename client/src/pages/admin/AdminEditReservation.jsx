@@ -23,7 +23,7 @@ export function AdminEditReservation() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch(`http://localhost:5000/reservation`, {
+        fetch(`${import.meta.env.VITE_BACKEND_URL}/reservation`, {
             method: 'GET',
             credentials: 'include'
         })
@@ -93,7 +93,7 @@ export function AdminEditReservation() {
 
         if (hasError) return;
 
-        fetch('http://localhost:5000/admin/reservation/edit', {
+        fetch(`${import.meta.env.VITE_BACKEND_URL}/admin/reservation/edit`, {
             method: 'PUT',
             credentials: 'include',
             headers: {
