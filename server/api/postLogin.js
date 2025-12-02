@@ -49,7 +49,7 @@ export async function postLogin(req, res) {
                 httpOnly: true,
                 sameSite: 'Lax',
                 maxAge: 1000 * 60 * 60,
-                secure: false,
+                secure: true,
                 path: '/',
             })
 
