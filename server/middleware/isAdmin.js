@@ -3,7 +3,6 @@ export function isAdmin(req, res, next) {
         return res.json({
             status: 'error',
             msg: 'Pirma yra būtina prisijungti',
-            a: req.user,
         });
     }
 
