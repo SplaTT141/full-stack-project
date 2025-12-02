@@ -195,7 +195,7 @@ export function AdminReservations() {
                                 ))
                                 :
                                 <tr>
-                                    <td colSpan="4">Kraunasi...</td>
+                                    <td colSpan="9">Kraunasi...</td>
                                 </tr>
                                 }
                             </tbody>

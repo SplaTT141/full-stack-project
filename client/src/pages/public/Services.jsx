@@ -128,7 +128,7 @@ export function Services() {
                                     ))
                                 :
                                     <tr>
-                                        <td colSpan="4">Kraunasi...</td>
+                                        <td colSpan="5">Kraunasi...</td>
                                     </tr>
                             }
                         </tbody>

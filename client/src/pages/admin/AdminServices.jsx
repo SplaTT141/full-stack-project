@@ -93,7 +93,7 @@ export function AdminServices() {
                                             ))
                                             :
                                             <tr>
-                                                <td colSpan="4">Kraunasi...</td>
+                                                <td colSpan="6">Kraunasi...</td>
                                             </tr>
                                         }
                                     </tbody>
