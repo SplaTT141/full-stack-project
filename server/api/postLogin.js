@@ -46,7 +46,7 @@ export async function postLogin(req, res) {
             }
 
             res.cookie('loginToken', loginToken, {
-                httpOnly: false,
+                httpOnly: true,
                 sameSite: 'None',
                 maxAge: 1000 * 60 * 60,
                 secure: true,
