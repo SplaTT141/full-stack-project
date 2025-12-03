@@ -7,6 +7,6 @@ export async function getServices(req, res) {
 
         return res.status(200).json({ status: 'success', services });
     } catch (error) {
-        return res.status(500).json({ status: 'error', message: 'Serverio klaida' });
+        return res.status(500).json({ status: 'error', message: error.message });
     }
 }
