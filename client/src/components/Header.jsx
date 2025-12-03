@@ -9,7 +9,7 @@ export function Header() {
 
     return (
             <div className="container">
-                <header className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-between py-3 mb-4 border-bottom">
+                <header className="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-between py-3 mb-4 border-bottom ">
                     <Link to="/"
                         className="d-flex gap-3 align-items-center link-body-emphasis text-decoration-none pe-4">
                     <img src={logo} alt="logo" width="60" />
@@ -34,8 +34,8 @@ export function Header() {
                             isLoggedIn 
                                 ?
                                     <>
-                                        <Link to={"/logout"} className="btn btn-outline-primary me-2">Atsijungti</Link>
-                                        <Link to={"/admin/dashboard"} className="btn btn-primary">Valdymo skydelis</Link>
+                                        <Link to={"/logout"} className="btn btn-outline-primary me-2 mb-1 mt-1">Atsijungti</Link>
+                                        <Link to={"/admin/dashboard"} className="btn btn-primary ">Valdymo skydelis</Link>
                                     </>
                                 :
                                     <>

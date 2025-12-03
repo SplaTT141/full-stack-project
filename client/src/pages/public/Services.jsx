@@ -53,10 +53,11 @@ export function Services() {
     return ( 
     <div className="container">
         <div className="row">
-            <div className="bd-example-snippet bd-code-snippet py-5">
+            <div className="bd-example-snippet bd-code-snippet">
+                <h1 className="mb-5">Kirpyklos paslaugos</h1>
                 <div className="bd-example m-0 border-0">
                     <div className="mb-3 fw-bold" style={{color: 'red'}}>{error}</div>
-                    <div className="mb-2">
+                    <div className="mb-4">
                         <input 
                             onChange={e =>setFilter(prev => ({...prev, service: e.target.value}))} 
                             value={filter.service}

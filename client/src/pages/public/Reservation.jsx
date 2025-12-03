@@ -134,8 +134,9 @@ export function Reservation() {
   }
 
   return (
-    <div className="container py-5">
+    <div className="container">
         <div className="bd-example-snippet bd-code-snippet">
+          <h1 className="mb-5">Rezervuokite laiką</h1>
             <div className="bd-example m-0 border-0">
                 <form onSubmit={handleSubmit}>
                     <div className="mb-3 fw-bold" style={{ color: "red" }}>{error}</div>
