@@ -7,6 +7,7 @@ export async function userData(req, res, next) {
 
     if (!req.cookies.loginToken || req.cookies.loginToken.length !== 128) {
         return next();
+        console.log('Klaida sioje vietoje!');
     }
 
     try {
