@@ -5,7 +5,7 @@ export async function userData(req, res, next) {
         isLoggedIn: false,
     }
 
-    if (!req.cookies.loginToken) {
+    if (!req.cookies.loginToken || req.cookies.loginToken.length !== 128) {
         return next();
     }
 
