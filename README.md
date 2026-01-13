@@ -1,87 +1,116 @@
-# Kirpykla - egzamino pasiruošimo užduotis
+# 💈 Barbershop
 
-<br>
+## 🌟 About
 
-## 🌟 Apie
+A full-stack barbershop management web application. Users can browse services and make reservations, while admins manage services and bookings through a protected admin panel.
 
-Kirpimo paslaugų puslapio projektas
+## ▶️ Live Demo
 
-## 🎯 Paslaugos veiks per šias programas:
+👉 [https://kirpykla.netlify.app](https://kirpykla.netlify.app)
 
-- CLIENT: react.js
-- SERVER: express.js
--
-- API
-- SQL
+<!-- ## ✨ Overview
+
+- Users can view services and create reservations
+- Admins can manage services and reservations
+- Secure login with token-based authentication
+- REST API with full backend validation
+- Deployed frontend and backend -->
+
+## 🧩 Tech Stack
+
+### Frontend
+
+- React
+- Bootstrap
+- Netlify
+
+### Backend
+
 - Node.js
-- xampp
--
+- Express.js
+- REST API
+- MySQL
+- Railway
 
-## 🧰 Pradedant
+## 🔐 Authentication & Authorization
 
-Node.js - atsisiunčiame ir įstaliuojame.
+- Custom authentication using **randomly generated 128-character tokens**
+- Tokens are stored in HTTP cookies
+- Every protected request is validated
+- Admin routes are accessible only to authenticated users
+- Passwords are hashed using **bcrypt**
 
+## 🧑‍💼 Access Levels
+
+### Public
+
+- Read information about the barbershop
+- Browse available services
+- Create reservations
+- Register a new account
+
+### Admin (Authenticated)
+
+- Create, edit, and delete services
+- View, edit and delete reservations
+- Access own account information
+
+## ✂️ Features
+
+### Services
+
+- Create, edit, and delete services
+- Assign an image to each service from a predefined image list
+- Filter services by name, price, and duration
+
+### Reservations
+
+- Create reservations
+- Edit and delete reservations
+- Filter reservations by customer details, service, date, and time
+
+## 🛡️ Validation & Security
+
+- Form validation on the frontend
+- Request validation on the backend
+- Prevents bypassing validation with tools like Postman
+- CORS configured
+- Environment variables managed with **dotenv**
+
+## 🗄️ Database
+
+- MySQL relational database
+- Tables and relationships between:
+
+  - Users
+  - Services
+  - Reservations
+
+- Hosted on Railway
+
+## 🌍 Environment Setup
+
+Supports multiple environments:
+
+- development
+- production
+
+Example environment file:
+
+```bash
+.env.example
 ```
-https://nodejs.org
-```
 
-Git - atsisiunčiame ir įstaliuojame.
+## 📌 Notes
 
-```
-https://git-scm.com
-```
+- Admin panel is protected and not publicly accessible
+- Service images are limited to predefined server-side assets
+- Built to simulate a real-world booking workflow
 
-Xampp - atsisiunčiame ir įsirašome.
+## ✍️ Author
 
-```
-https://www.apachefriends.org/download.html
-```
+GitHub: https://github.com/splatt141
 
-### 🏃 Jeigu norime pasileisti local server:
+## 📄 License
 
-Would like to run this project locally? Open terminal and follow these steps:
-
-1. Atsisiųsti kloną iš nuorodos:
-
-   ```sh
-   https://github.com/SplaTT141/full-stack-project
-   ```
-
-2. Įdiegti pagrindines NPM priklausomybes
-   ```sh
-   npm i
-   ```
-3. Įdiegti priklausomybes subkataloguose
-
-   ```sh
-    npm run install-all
-   ```
-
-4. Paleisti serverius
-   ```sh
-   npm run dev
-   ```
-
-## 🎅 Autorius
-
-Ernest: [Github](https://github.com/splatt141)
-
-Prisijungimai:
-
-Prisijungimo vardas: Egzaminas
-
-slaptažodis:egzaminas
-
-email:egzaminas@egzaminas.lt
-
-P.S.
-
-šie failai nevieši, jie githut netalpinami:
-
-.env.development
-
-.env.production
-
-```
-
-```
+This project is created for educational purposes.
