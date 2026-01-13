@@ -158,49 +158,49 @@ export function AdminReservations() {
                             </div>
                             <button onClick={handleClickDeleteFilters} className="btn btn-secondary col-md-4 col-lg-3">Panaikinti filtrus</button>
                         </div>
-                        <div className="table-responsive">
-                        <table className="table table-striped table-hover">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Vardas</th>
-                                    <th scope="col">Pavardė</th>
-                                    <th scope="col">Elektroninis paštas</th>
-                                    <th scope="col">Telefono numeris</th>
-                                    <th scope="col">Paslauga</th>
-                                    <th scope="col">Data</th>
-                                    <th scope="col">Laikas</th>
-                                    <th scope="col">Veiksmai</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {(reservations.length)
-                                ?
-                                filteredReservations.map((reservation, index) => (
-                                <tr key={index}>
-                                    <th>{index + 1}</th>
-                                    <td>{reservation.name}</td>
-                                    <td>{reservation.surname}</td>
-                                    <td>{reservation.email}</td>
-                                    <td>{reservation.phone}</td>
-                                    <td>{reservation.service_name}</td>
-                                    <td>{reservation.date.slice(0, 10)}</td>
-                                    <td>{reservation.time.slice(0, 5)}</td>
-                                    <td>
-                                        <Link to={`/admin/reservation/edit/${reservation.id}`}
-                                            className="btn btn-warning me-2 mb-1">Redaguoti</Link>
-                                        <button onClick={()=> handleClickDelete(reservation.id)} className="btn
-                                            btn-danger">Ištrinti</button>
-                                    </td>
-                                </tr>
-                                ))
-                                :
-                                <tr>
-                                    <td colSpan="9">Kraunasi...</td>
-                                </tr>
-                                }
-                            </tbody>
-                        </table>
+                        <div className="table-responsive-md">
+                            <table className="table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Vardas</th>
+                                        <th scope="col">Pavardė</th>
+                                        <th scope="col">Elektroninis paštas</th>
+                                        <th scope="col">Telefono numeris</th>
+                                        <th scope="col">Paslauga</th>
+                                        <th scope="col">Data</th>
+                                        <th scope="col">Laikas</th>
+                                        <th scope="col">Veiksmai</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {(reservations.length)
+                                    ?
+                                    filteredReservations.map((reservation, index) => (
+                                    <tr key={index}>
+                                        <th>{index + 1}</th>
+                                        <td>{reservation.name}</td>
+                                        <td>{reservation.surname}</td>
+                                        <td>{reservation.email}</td>
+                                        <td>{reservation.phone}</td>
+                                        <td>{reservation.service_name}</td>
+                                        <td>{reservation.date.slice(0, 10)}</td>
+                                        <td>{reservation.time.slice(0, 5)}</td>
+                                        <td>
+                                            <Link to={`/admin/reservation/edit/${reservation.id}`}
+                                                className="btn btn-warning me-2 mb-1">Redaguoti</Link>
+                                            <button onClick={()=> handleClickDelete(reservation.id)} className="btn
+                                                btn-danger">Ištrinti</button>
+                                        </td>
+                                    </tr>
+                                    ))
+                                    :
+                                    <tr>
+                                        <td colSpan="9">Kraunasi...</td>
+                                    </tr>
+                                    }
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

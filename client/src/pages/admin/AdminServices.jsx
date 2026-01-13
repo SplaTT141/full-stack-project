@@ -57,47 +57,49 @@ export function AdminServices() {
                                     <Link to={'add'} className="btn btn-success">Pridėti paslaugą +</Link>
                                 </div>
                                 <div className="mb-3 fw-bold" style={{color: 'red'}}>{error}</div>
-                                <table className="table table-striped table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">Nuotrauka</th>
-                                            <th scope="col">Paslauga</th>
-                                            <th scope="col">Trukmė</th>
-                                            <th scope="col">Kaina</th>
-                                            <th scope="col">Veiksmai</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {(services.length)
-                                            ?
-                                            services.map((service, index) => (
-                                                <tr key={index}>
-                                                    <th>{index + 1}</th>
-                                                    <th>
-                                                        <img
-                                                            src={service.image_path ? `/img/${service.image_path}` : '/img/default.png'}
-                                                            alt={service.service}
-                                                            style={{ width: '80px', height: '50px', objectFit: 'cover', borderRadius: '4px' }}
-                                                            onError={(e) => { e.target.src = '/img/default.png'; }}
-                                                        />
-                                                    </th>
-                                                    <td>{service.service}</td>
-                                                    <td>{service.duration} min</td>
-                                                    <td>{service.price} €</td>
-                                                    <td>
-                                                        <Link to={`edit/${service.id}`} className="btn btn-warning me-2 mb-1">Redaguoti</Link>
-                                                        <button onClick={() => handleClickDeleteService(service.id)} className="btn btn-danger">Panaikinti</button>
-                                                    </td>
-                                                </tr>
-                                            ))
-                                            :
+                                <div className="table-responsive">
+                                    <table className="table table-striped table-hover">
+                                        <thead>
                                             <tr>
-                                                <td colSpan="6">Kraunasi...</td>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Nuotrauka</th>
+                                                <th scope="col">Paslauga</th>
+                                                <th scope="col">Trukmė</th>
+                                                <th scope="col">Kaina</th>
+                                                <th scope="col">Veiksmai</th>
                                             </tr>
-                                        }
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                            {(services.length)
+                                                ?
+                                                services.map((service, index) => (
+                                                    <tr key={index}>
+                                                        <th>{index + 1}</th>
+                                                        <th>
+                                                            <img
+                                                                src={service.image_path ? `/img/${service.image_path}` : '/img/default.png'}
+                                                                alt={service.service}
+                                                                style={{ width: '80px', height: '50px', objectFit: 'cover', borderRadius: '4px' }}
+                                                                onError={(e) => { e.target.src = '/img/default.png'; }}
+                                                            />
+                                                        </th>
+                                                        <td>{service.service}</td>
+                                                        <td>{service.duration} min</td>
+                                                        <td>{service.price} €</td>
+                                                        <td>
+                                                            <Link to={`edit/${service.id}`} className="btn btn-warning me-2 mb-1">Redaguoti</Link>
+                                                            <button onClick={() => handleClickDeleteService(service.id)} className="btn btn-danger">Panaikinti</button>
+                                                        </td>
+                                                    </tr>
+                                                ))
+                                                :
+                                                <tr>
+                                                    <td colSpan="6">Kraunasi...</td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
