@@ -210,7 +210,7 @@ export function nameIsInvalid(name) {
         return `Vardą turi sudaryti ne daugiau 20 simbolių`;
     }
 
-    const validSymbols = 'qwertyuiopasdfghjklzxcvbnmąčęėįšųūĄČĘĖĮŠŲŪ9QWERTYUIOPASDFGHJKLZXCVBNM ';
+    const validSymbols = 'qwertyuiopasdfghjklzxcvbnmąčęėįšųūžĄČĘĖĮŠŲŪŽ9QWERTYUIOPASDFGHJKLZXCVBNM ';
     const foundInvalidSymbols = [];
 
     for (const s of name) {
@@ -243,7 +243,7 @@ export function surnameIsInvalid(surname) {
         return `Pavardę turi sudaryti ne daugiau 40 simbolių`;
     }
 
-    const validSymbols = 'qwertyuiopasdfghjklzxcvbnmąčęėįšųūĄČĘĖĮŠŲŪ9QWERTYUIOPASDFGHJKLZXCVBNM ';
+    const validSymbols = 'qwertyuiopasdfghjklzxcvbnmąčęėįšųūžĄČĘĖĮŠŲŪŽ9QWERTYUIOPASDFGHJKLZXCVBNM ';
     const foundInvalidSymbols = [];
 
     for (const s of surname) {
