@@ -158,7 +158,7 @@ export function AdminReservations() {
                             </div>
                             <button onClick={handleClickDeleteFilters} className="btn btn-secondary col-md-4 col-lg-3">Panaikinti filtrus</button>
                         </div>
-                        <div className="table-responsive-lg">
+                        <div className="table-responsive">
                             <table className="table table-striped table-hover">
                                 <thead>
                                     <tr>
