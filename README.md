@@ -1,4 +1,4 @@
-# 💈 Barbershop
+# 💈 Kirpykla
 
 ## 🌟 About
 
