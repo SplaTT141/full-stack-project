@@ -8,13 +8,12 @@ A full-stack barbershop management web application. Users can browse services an
 
 👉 [https://kirpykla.netlify.app](https://kirpykla.netlify.app)
 
-<!-- ## ✨ Overview
+## 🔑 Demo Admin Access
 
-- Users can view services and create reservations
-- Admins can manage services and reservations
-- Secure login with token-based authentication
-- REST API with full backend validation
-- Deployed frontend and backend -->
+To log in to the admin panel, you can use the following demo credentials:
+
+- Username: **example**
+- Password: **example**
 
 ## 🧩 Tech Stack
 
