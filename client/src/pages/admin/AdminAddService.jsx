@@ -52,7 +52,7 @@ export function AdminAddService() {
 
     if (hasError) return;
 
-    fetch(`${import.meta.env.VITE_BACKEND_URL}/services`, {
+    fetch(`${import.meta.env.VITE_BACKEND_URL}/admin/services`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
