@@ -36,10 +36,6 @@ app.get('/login', isAdmin, getLogin);
 app.get('/services', getServices);
 app.get('/reservation', isAdmin, getReservations);
 
-app.get('/wakeup', (req, res) => {
-    res.status(200).send('OK');
-});
-
 app.post('/register', postRegister);
 app.post('/login', postLogin);
 app.post('/logout', postLogout);
